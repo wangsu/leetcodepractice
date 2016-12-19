@@ -25,7 +25,7 @@ public class MainTests {
 
     @Test
     public void test461(){
-        //log.info("result {}",leetCodeService.hammingDistance(1,4));
+        log.info("result {}",leetCodeService.hammingDistance(211,4));
         log.info("result {}",leetCodeService.hammingDistance(1,4));
     }
 }
