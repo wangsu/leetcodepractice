@@ -15,6 +15,24 @@ public class LeetCodeService {
     private static final Logger log = LoggerFactory.getLogger(LeetCodeService.class);
 
     /**
+     * 292. Nim Game
+     * @param n
+     * @return
+     */
+    public boolean canWinNim(int n) {
+        if(n<4){
+            return true;
+        }else{
+            if(n%4==0){
+                return false;
+            }else{
+                return true;
+            }
+        }
+    }
+
+
+    /**
      * 448. Find All Numbers Disappeared in an Array
      * @param nums
      * @return
