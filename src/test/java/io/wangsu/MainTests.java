@@ -24,6 +24,19 @@ public class MainTests {
     LeetCodeService leetCodeService;
 
     @Test
+    public void test463(){
+        int[][] grid =new int[][] {
+                new int[] { 0, 1, 0, 0 },
+                new int[] { 1, 1, 1, 0},
+                new int[] { 0, 1, 0, 0},
+                new int[] { 1, 1, 0, 0}
+        };
+
+        log.info("result {}",leetCodeService.islandPerimeter(grid));
+
+    }
+
+    @Test
     public void test461(){
         log.info("result {}",leetCodeService.hammingDistance(211,4));
         log.info("result {}",leetCodeService.hammingDistance(1,4));
