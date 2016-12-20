@@ -24,6 +24,12 @@ public class MainTests {
     LeetCodeService leetCodeService;
 
     @Test
+    public void test448(){
+        int[] input = new int[]{4,3,2,7,8,2,3,1};
+        log.info("result {}",leetCodeService.findDisappearedNumbers(input));
+    }
+
+    @Test
     public void test463(){
         int[][] grid =new int[][] {
                 new int[] { 0, 1, 0, 0 },

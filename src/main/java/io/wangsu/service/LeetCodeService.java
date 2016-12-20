@@ -15,6 +15,31 @@ public class LeetCodeService {
     private static final Logger log = LoggerFactory.getLogger(LeetCodeService.class);
 
     /**
+     * 448. Find All Numbers Disappeared in an Array
+     * @param nums
+     * @return
+     */
+    public List<Integer> findDisappearedNumbers(int[] nums) {
+        for(int i=0;i<nums.length;i++){
+            int position = Math.abs(nums[i])-1;
+            if(nums[position]>0){
+                if(log.isTraceEnabled()){
+                    log.debug("mark {} as negative",position);
+                }
+                nums[position] = -nums[position];
+            }
+
+        }
+        List<Integer> result = new ArrayList();
+        for(int i=0;i<nums.length;i++){
+            if(nums[i]>0){
+                result.add(i+1);
+            }
+        }
+        return result;
+    }
+
+    /**
      * 463. Island Perimeter
      * @param grid
      * @return
