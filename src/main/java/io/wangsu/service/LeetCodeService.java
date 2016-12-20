@@ -15,6 +15,24 @@ public class LeetCodeService {
     private static final Logger log = LoggerFactory.getLogger(LeetCodeService.class);
 
     /**
+     * 371. Sum of Two Integers
+     * @param a
+     * @param b
+     * @return
+     */
+    public int getSum(int a, int b) {
+        int sum = a^b;
+        int carry = (a&b) << 1;
+        while(carry!=0){
+            int t_sum = sum^carry;
+            carry = (sum&carry)<<1;
+            sum = t_sum;
+        }
+        return sum;
+    }
+
+
+    /**
      * 292. Nim Game
      * @param n
      * @return
