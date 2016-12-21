@@ -17,6 +17,21 @@ public class LeetCodeService {
     private static final Logger log = LoggerFactory.getLogger(LeetCodeService.class);
 
     /**
+     * 258. Add Digits
+     * @param num
+     * @return
+     */
+    public int addDigits(int num) {
+        if(num==0){
+            return 0;
+        }else if(num%9==0){
+            return 9;
+        }else{
+            return num%9;
+        }
+    }
+
+    /**
      * 389. Find the Difference
      * @param s
      * @param t
