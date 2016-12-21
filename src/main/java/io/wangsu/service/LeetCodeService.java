@@ -5,7 +5,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by SuW on 12/19/2016.
@@ -13,6 +15,54 @@ import java.util.List;
 @Service
 public class LeetCodeService {
     private static final Logger log = LoggerFactory.getLogger(LeetCodeService.class);
+
+    /**
+     * 389. Find the Difference
+     * @param s
+     * @param t
+     * @return
+     */
+    public char findTheDifference(String s, String t) {
+        Map<Character,Integer> smap = new HashMap();
+        Map<Character,Integer> tmap = new HashMap();
+        for(int i=0;i<s.length();i++){
+            if(!smap.containsKey(s.charAt(i))){
+                smap.put(s.charAt(i),1);
+            }else{
+                smap.put(s.charAt(i),smap.get(s.charAt(i))+1);
+            }
+        }
+        for(int i=0;i<t.length();i++){
+            if(!tmap.containsKey(t.charAt(i))){
+                tmap.put(t.charAt(i),1);
+            }else{
+                tmap.put(t.charAt(i),tmap.get(t.charAt(i))+1);
+            }
+        }
+        for(Character tchar:tmap.keySet()){
+            if(!smap.containsKey(tchar)){
+                if(log.isTraceEnabled()){
+                    log.debug("{} is new",""+tchar);
+                }
+                return tchar;
+            }else{
+                if(log.isTraceEnabled()) {
+                    log.debug("compare char {} on t {} and s {}", tchar,tmap.get(tchar), smap.get(tchar));
+                }
+                if(tmap.get(tchar)!=smap.get(tchar)){
+                    if(log.isTraceEnabled()){
+                        log.debug("{} is less count",""+tchar);
+                    }
+                    return tchar;
+                }
+            }
+        }
+
+        if(log.isTraceEnabled()){
+            log.debug("cannot find new, use the last one");
+        }
+        return t.charAt(t.length()-1);
+    }
 
     /**
      * 371. Sum of Two Integers
