@@ -1,5 +1,6 @@
 package io.wangsu.service;
 
+import io.wangsu.domain.TreeNode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,33 @@ import java.util.Map;
 @Service
 public class LeetCodeService {
     private static final Logger log = LoggerFactory.getLogger(LeetCodeService.class);
+
+    /**
+     * 226. Invert Binary Tree
+     * @param root
+     * @return
+     */
+    public TreeNode invertTree(TreeNode root) {
+        List<TreeNode> hold = new ArrayList();
+        if(root!=null)
+            hold.add(root);
+        while(!hold.isEmpty()){
+            TreeNode current = hold.get(0);
+            if(current.left!=null)
+                hold.add(current.left);
+
+            if(current.right!=null)
+                hold.add(current.right);
+
+            //Switch
+            TreeNode temp = current.left;
+            current.left = current.right;
+            current.right = temp;
+
+            hold.remove(0);
+        }
+        return root;
+    }
 
     /**
      * 258. Add Digits
