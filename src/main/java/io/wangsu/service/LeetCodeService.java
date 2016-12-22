@@ -15,6 +15,24 @@ public class LeetCodeService {
     private static final Logger log = LoggerFactory.getLogger(LeetCodeService.class);
 
     /**
+     * 283. Move Zeroes
+     * @param nums
+     */
+    public void moveZeroes(int[] nums) {
+        for(int i=0;i<nums.length;i++){
+            if(nums[i]==0){
+                for(int j=i+1;j<nums.length;j++){
+                    if(nums[j]!=0){
+                        nums[i] = nums[j];
+                        nums[j] = 0;
+                        break;
+                    }
+                }
+            }
+        }
+    }
+
+    /**
      * 455. Assign Cookies
      * @param g
      * @param s
