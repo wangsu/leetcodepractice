@@ -5,10 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by SuW on 12/19/2016.
@@ -16,6 +13,27 @@ import java.util.Map;
 @Service
 public class LeetCodeService {
     private static final Logger log = LoggerFactory.getLogger(LeetCodeService.class);
+
+    /**
+     * 455. Assign Cookies
+     * @param g
+     * @param s
+     * @return
+     */
+    public int findContentChildren(int[] g, int[] s) {
+        Arrays.sort(g);
+        Arrays.sort(s);
+        int result = 0;
+        for(int i=g.length-1, s_position=s.length-1;i>=0&&s_position>=0;i--){
+            if(g[i]<=s[s_position]){
+                s_position--;
+                result++;
+                continue;
+            }
+        }
+        return result;
+    }
+
 
     /**
      * 226. Invert Binary Tree
