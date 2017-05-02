@@ -408,4 +408,46 @@ public class LeetCodeService {
             return false;
         }
     }
+
+    /**
+     * 13. Roman to Integer
+     * @param s
+     * @return
+     */
+    public int romanToInt(String s) {
+        int last = romanChartoInt(s.charAt(0));
+        int total = 0;
+        for(int i=1;i<s.length();i++){
+            int cur = romanChartoInt(s.charAt(i));
+            if(last<cur){
+                total -= last;
+            }else{
+                total += last;
+            }
+            last = cur;
+        }
+        total += last;
+        return total;
+    }
+
+    private int romanChartoInt(char c){
+        switch(c){
+            case 'I':
+                return 1;
+            case 'V':
+                return 5;
+            case 'X':
+                return 10;
+            case 'L':
+                return 50;
+            case 'C':
+                return 100;
+            case 'D':
+                return 500;
+            case 'M':
+                return 1000;
+            default:
+                return 0;
+        }
+    }
 }
