@@ -1,5 +1,6 @@
 package io.wangsu;
 
+import io.wangsu.domain.ListNode;
 import io.wangsu.service.LeetCodeService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -61,6 +62,15 @@ public class MainTests {
         log.info("result {}",leetCodeService.longestCommonPrefix(strs));
         String[] strs2 = {"a","a"};
         log.info("result {}",leetCodeService.longestCommonPrefix(strs2));
+    }
+
+    @Test
+    public void test21(){
+        ListNode n1 = new ListNode(1);
+        ListNode n2 = new ListNode(2);
+        ListNode result = leetCodeService.mergeTwoLists(n1,n2);
+        log.info("result {}",result.val);
+        log.info("result {}",result.next.val);
     }
 
 }

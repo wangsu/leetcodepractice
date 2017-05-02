@@ -1,5 +1,6 @@
 package io.wangsu.service;
 
+import io.wangsu.domain.ListNode;
 import io.wangsu.domain.TreeNode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -501,5 +502,60 @@ public class LeetCodeService {
         }else{
             return false;
         }
+    }
+
+    /**
+     * 21. Merge Two Sorted Lists
+     * @param l1
+     * @param l2
+     * @return
+     */
+    public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+        if(l1==null&&l2==null){
+            return null;
+        }
+        if(l1!=null&&l2==null){
+            return l1;
+        }
+        if(l1==null&&l2!=null){
+            return l2;
+        }
+        ListNode l1cur = l1;
+        ListNode l2cur = l2;
+        ListNode head = null;
+        ListNode result = null;
+        while(l1cur!=null||l2cur!=null){
+            if(l1cur!=null&&l2cur!=null){
+                if(l1cur.val<=l2cur.val){
+                    if(result==null){
+                        result = new ListNode(l1cur.val);
+                        head = result;
+                    }else{
+                        result.next = new ListNode(l1cur.val);
+                        result = result.next;
+                    }
+                    l1cur = l1cur.next;
+                }else{
+                    if(result==null){
+                        result = new ListNode(l2cur.val);
+                        head = result;
+                    }else{
+                        result.next = new ListNode(l2cur.val);
+                        result = result.next;
+                    }
+                    l2cur = l2cur.next;
+                }
+            }else if(l1cur!=null&&l2cur==null){
+                result.next = new ListNode(l1cur.val);
+                l1cur = l1cur.next;
+                result = result.next;
+            }else if(l1cur==null&&l2cur!=null){
+                result.next = new ListNode(l2cur.val);
+                l2cur = l2cur.next;
+                result = result.next;
+            }
+        }
+        return head;
+
     }
 }
