@@ -582,4 +582,21 @@ public class LeetCodeService {
         }
         return ++slow;
     }
+
+    /**
+     * 27. Remove Element
+     * @param nums
+     * @param val
+     * @return
+     */
+    public int removeElement(int[] nums, int val) {
+        int slow=0;
+        for(int i=0;i<nums.length;i++){
+            int cur = nums[i];
+            if(cur!=val){
+                nums[slow++]=cur;
+            }
+        }
+        return slow;
+    }
 }
