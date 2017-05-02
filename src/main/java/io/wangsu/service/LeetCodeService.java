@@ -387,4 +387,25 @@ public class LeetCodeService {
         }
         return true;
     }
+
+    /**
+     * 9. Palindrome Number
+     * @param x
+     * @return
+     */
+    public boolean isPalindrome(int x) {
+        int original = x;
+        int rev = 0;
+        int digit = 0;
+        while(x>0){
+            digit = x%10;
+            rev = rev*10 + digit;
+            x = x/10;
+        }
+        if(rev==original){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }
