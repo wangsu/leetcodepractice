@@ -558,4 +558,28 @@ public class LeetCodeService {
         return head;
 
     }
+
+    /**
+     * 26. Remove Duplicates from Sorted Array
+     * @param nums
+     * @return
+     */
+
+    public int removeDuplicates(int[] nums) {
+        int slow = 0;
+        int lastV = 0;
+        for(int i=0;i<nums.length;i++){
+            if(i==0){
+                lastV=nums[i];
+                continue;
+            }else{
+                int cur = nums[i];
+                if(lastV!=cur){
+                    nums[++slow] = cur;
+                    lastV = cur;
+                }
+            }
+        }
+        return ++slow;
+    }
 }
