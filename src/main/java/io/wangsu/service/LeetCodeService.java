@@ -479,4 +479,27 @@ public class LeetCodeService {
         }
         return common;
     }
+
+    /**
+     * 20. Valid Parentheses
+     * @param s
+     * @return
+     */
+    public boolean isValid(String s) {
+        List<Integer> list = new ArrayList();
+        for(int i=0;i<s.length();i++){
+            int cur = s.charAt(i);
+            if(!list.isEmpty()&&(list.get(list.size()-1)==cur-1||list.get(list.size()-1)==cur-2)){
+                //51 ( 52 ) 133 [ 135] 173{ 175}
+                list.remove(list.size()-1);
+            }else{
+                list.add(cur);
+            }
+        }
+        if(list.size()==0){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }
