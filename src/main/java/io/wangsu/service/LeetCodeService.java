@@ -450,4 +450,33 @@ public class LeetCodeService {
                 return 0;
         }
     }
+
+    /**
+     * 14. Longest Common Prefix
+     * @param strs
+     * @return
+     */
+    public String longestCommonPrefix(String[] strs) {
+        String common = "";
+        if(strs.length==0){
+            return common;
+        }
+        String baseString = strs[0];
+        for(int j=0;j<baseString.length();j++){
+            char curInBase = baseString.charAt(j);
+            for(int i=1;i<strs.length;i++){
+                String compareString = strs[i];
+                try {
+                    char curInCompare = compareString.charAt(j);
+                    if(curInBase!=curInCompare){
+                        return common;
+                    }
+                }catch(StringIndexOutOfBoundsException e){
+                    return common;
+                }
+            }
+            common += String.valueOf(curInBase);
+        }
+        return common;
+    }
 }

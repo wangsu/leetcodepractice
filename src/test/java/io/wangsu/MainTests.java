@@ -54,4 +54,13 @@ public class MainTests {
         log.info("result {}",leetCodeService.hammingDistance(211,4));
         log.info("result {}",leetCodeService.hammingDistance(1,4));
     }
+
+    @Test
+    public void test14(){
+        String[] strs = {"aa","a"};
+        log.info("result {}",leetCodeService.longestCommonPrefix(strs));
+        String[] strs2 = {"a","a"};
+        log.info("result {}",leetCodeService.longestCommonPrefix(strs2));
+    }
+
 }
