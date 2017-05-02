@@ -360,4 +360,31 @@ public class LeetCodeService {
         }
         return result;
     }
+
+    /**
+     * 383. Ransom Note
+     * @param ransomNote
+     * @param magazine
+     * @return
+     */
+    public boolean canConstruct(String ransomNote, String magazine) {
+        Map<String,Integer> map = new HashMap();
+        for(int i=0;i<magazine.length();i++){
+            String cur = String.valueOf(magazine.charAt(i));
+            if(map.containsKey(cur)){
+                map.put(cur,map.get(cur)+1);
+            }else{
+                map.put(cur,1);
+            }
+        }
+        for(int i=0;i<ransomNote.length();i++){
+            String cur = String.valueOf(ransomNote.charAt(i));
+            if(map.containsKey(cur)&&map.get(cur)>0){
+                map.put(cur,map.get(cur)-1);
+            }else{
+                return false;
+            }
+        }
+        return true;
+    }
 }
