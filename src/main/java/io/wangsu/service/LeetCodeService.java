@@ -620,4 +620,31 @@ public class LeetCodeService {
         }
         return -1;
     }
+
+    /**
+     * 35. Search Insert Position
+     * @param nums
+     * @param target
+     * @return
+     */
+    public int searchInsert(int[] nums, int target) {
+        if(nums.length==0){
+            return 0;
+        }
+        int lastV = nums[0];
+        if(target<=lastV){
+            return 0;
+        }
+        for(int i=1;i<nums.length;i++){
+            int cur = nums[i];
+            if(target==cur){
+                return i;
+            }
+            if(lastV<target&&target<cur){
+                return i;
+            }
+            lastV = cur;
+        }
+        return nums.length;
+    }
 }
