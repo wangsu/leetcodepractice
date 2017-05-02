@@ -599,4 +599,25 @@ public class LeetCodeService {
         }
         return slow;
     }
+
+    /**
+     * 28. Implement strStr()
+     * @param haystack
+     * @param needle
+     * @return
+     */
+    public int strStr(String haystack, String needle) {
+        if(haystack.length()==0&&needle.length()==0){
+            return 0;
+        }
+        for(int i=0;i<haystack.length();i++){
+            if(i+needle.length()<=haystack.length()){
+                String compareStr = haystack.substring(i,i+needle.length());
+                if(compareStr.equals(needle)){
+                    return i;
+                }
+            }
+        }
+        return -1;
+    }
 }
