@@ -816,4 +816,28 @@ public class LeetCodeService {
         }
         return x;
     }
+
+    /**
+     * 83. Remove Duplicates from Sorted List
+     * @param head
+     * @return
+     */
+    public ListNode deleteDuplicates(ListNode head) {
+
+        if(head==null||head.next==null){
+            return head;
+        }
+        ListNode pre = head;
+        ListNode pointer = head.next;
+
+        while(pointer!=null){
+            if(pre.val==pointer.val){
+                pre.next = pointer.next;
+            }else{
+                pre = pre.next;
+            }
+            pointer = pointer.next;
+        }
+        return head;
+    }
 }
