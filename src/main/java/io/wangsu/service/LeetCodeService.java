@@ -682,4 +682,35 @@ public class LeetCodeService {
         result += ""+repeat+last;
         return result;
     }
+
+    /**
+     * 53. Maximum Subarray
+     * @param nums
+     * @return
+     */
+    public int maxSubArray(int[] nums) {
+        int slow = 0;
+        if(nums.length==0){return 0;}
+        if(nums.length==1){return nums[0];}
+        int fast = 1;
+        int sum = nums[0];
+        int max = nums[0];
+        while(slow<nums.length&&fast<nums.length){
+            if(sum>max){
+                max = sum;
+            }
+            if(sum<=0){
+                slow++;
+                fast = slow +1;
+                sum = nums[slow];
+            }else{
+                sum += nums[fast];
+                fast ++;
+            }
+        }
+        if(sum>max){
+            max = sum;
+        }
+        return max;
+    }
 }
