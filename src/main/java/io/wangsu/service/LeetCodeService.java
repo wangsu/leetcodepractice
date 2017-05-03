@@ -798,4 +798,22 @@ public class LeetCodeService {
         return sb.toString();
 
     }
+
+    /**
+     * 69. Sqrt(x)
+     * @param x
+     * @return
+     */
+    public int mySqrt(int x) {
+        for(int i=1;i<x;i++){
+            long lower = (long)i*(long)i;
+            long higher = (long)(i+1)*(long)(i+1);
+
+            if(lower<=x&&higher>x){
+                return i;
+            }
+
+        }
+        return x;
+    }
 }
