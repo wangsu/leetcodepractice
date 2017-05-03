@@ -647,4 +647,39 @@ public class LeetCodeService {
         }
         return nums.length;
     }
+
+    /**
+     * 38. Count and Say
+     * @param n
+     * @return
+     */
+    public String countAndSay(int n) {
+        if(n<=0){
+            return "";
+        }
+        String lastWord = "1";
+        for(int i=1;i<n;i++){
+            String curWord = sayStr(lastWord);
+            lastWord = curWord;
+        }
+        return lastWord;
+    }
+
+    private String sayStr(String str){
+        String result = "";
+        int last = Integer.parseInt(str.substring(0,1));
+        int repeat = 1;
+        for(int i=1;i<str.length();i++){
+            int cur = Integer.parseInt(str.substring(i,i+1));
+            if(cur==last){
+                repeat++;
+            }else{
+                result += ""+repeat+last;
+                repeat = 1;
+            }
+            last = cur;
+        }
+        result += ""+repeat+last;
+        return result;
+    }
 }
