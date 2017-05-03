@@ -765,4 +765,37 @@ public class LeetCodeService {
             return digits;
         }
     }
+
+    /**
+     * 67. Add Binary
+     * @param a
+     * @param b
+     * @return
+     */
+    public String addBinary(String a, String b) {
+        StringBuilder sb = new StringBuilder();
+        int diff = a.length()-b.length();
+        if(diff<0){
+            diff *= -1;
+            String temp = a;
+            a = b;
+            b = temp;
+        }
+        boolean carry = false;
+        for(int i=a.length()-1;i>=0;i--){
+            int sum = Integer.parseInt(String.valueOf(a.charAt(i)))+((i-diff>=0)?Integer.parseInt(String.valueOf(b.charAt(i-diff))):0)+(carry?1:0);
+            if(sum>=2){
+                sum-=2;
+                carry=true;
+            }else{
+                carry=false;
+            }
+            sb.insert(0,""+sum);
+        }
+        if(carry){
+            sb.insert(0,"1");
+        }
+        return sb.toString();
+
+    }
 }
