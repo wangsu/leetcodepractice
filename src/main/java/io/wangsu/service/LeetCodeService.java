@@ -939,4 +939,30 @@ public class LeetCodeService {
         }
         return 0d;
     }
+
+    /**
+     * 70. Climbing Stairs
+     * @param n
+     * @return
+     */
+    public int climbStairs(int n) {
+        if(n==1){
+            return 1;
+        }
+        if(n==2){
+            return 2;
+        }
+        if(n>=3){
+            int pre1 = 1;
+            int pre2 = 2;
+            int cur = 0;
+            for(int i=2;i<n;i++){
+                cur = pre1+pre2;
+                pre1 = pre2;
+                pre2 = cur;
+            }
+            return cur;
+        }
+        return 0;
+    }
 }
