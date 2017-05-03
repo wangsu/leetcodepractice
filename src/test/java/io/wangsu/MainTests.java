@@ -93,4 +93,11 @@ public class MainTests {
         log.info("result {}",result.next.val);
     }
 
+    @Test
+    public void test4(){
+        int[] nums1 = {0,};
+        int[] nums2 = {2,4,5};
+        log.info("result {}",leetCodeService.findMedianSortedArrays(nums1,nums2));
+    }
+
 }
