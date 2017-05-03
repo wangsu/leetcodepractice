@@ -726,6 +726,43 @@ public class LeetCodeService {
         }else{
             return 0;
         }
+    }
 
+    /**
+     * 66. Plus One
+     * @param digits
+     * @return
+     */
+    public int[] plusOne(int[] digits) {
+        boolean carry = false;
+        for(int i=digits.length-1;i>=0;i--){
+            if(i==digits.length-1){
+                digits[i] += 1;
+            }else{
+                if(carry){
+                    digits[i] += 1;
+                }
+            }
+            if(digits[i]==10){
+                digits[i] -= 10;
+                carry = true;
+            }else{
+                carry = false;
+            }
+        }
+
+        if(carry){
+            int[] result = new int[digits.length+1];
+            for(int i=0;i<result.length;i++){
+                if(i==0){
+                    result[i]=1;
+                }else{
+                    result[i]=digits[i-1];
+                }
+            }
+            return result;
+        }else{
+            return digits;
+        }
     }
 }
