@@ -840,4 +840,57 @@ public class LeetCodeService {
         }
         return head;
     }
+
+    /**
+     * 100. Same Tree
+     * @param p
+     * @param q
+     * @return
+     */
+    public boolean isSameTree(TreeNode p, TreeNode q) {
+        if(p==null&&q==null){
+            return true;
+        }
+        if(p!=null&&q==null){
+            return false;
+        }
+        if(p==null&&q!=null){
+            return false;
+        }
+        List<TreeNode> listP = new ArrayList();
+        List<TreeNode> listQ = new ArrayList();
+        listP.add(p);
+        listQ.add(q);
+        while(!listP.isEmpty()&&!listQ.isEmpty()){
+            TreeNode curP = listP.get(0);
+            listP.remove(0);
+            TreeNode curQ = listQ.get(0);
+            listQ.remove(0);
+            if(curP.val!=curQ.val){
+                return false;
+            }else{
+                if(curP.left!=null&&curQ.left!=null){
+                    listP.add(curP.left);
+                    listQ.add(curQ.left);
+                }
+                if(curP.left==null&&curQ.left!=null){
+                    return false;
+                }
+                if(curP.left!=null&&curQ.left==null){
+                    return false;
+                }
+                if(curP.right!=null&&curQ.right!=null){
+                    listP.add(curP.right);
+                    listQ.add(curQ.right);
+                }
+                if(curP.right==null&&curQ.right!=null){
+                    return false;
+                }
+                if(curP.right!=null&&curQ.right==null){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 }
