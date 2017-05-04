@@ -1086,4 +1086,30 @@ public class LeetCodeService {
         }
         return revResult;
     }
+
+    /**
+     * 108. Convert Sorted Array to Binary Search Tree
+     * @param nums
+     * @return
+     */
+    public TreeNode sortedArrayToBST(int[] nums) {
+        if(nums.length==0){
+            return null;
+        }
+        TreeNode head = new TreeNode(nums[(nums.length-1)/2]);
+        head.left = helper(nums,0,(nums.length-1)/2-1);
+        head.right = helper(nums,(nums.length-1)/2+1,nums.length-1);
+        return head;
+    }
+
+    private TreeNode helper(int[] nums,int start,int end){
+        if(start>end){
+            return null;
+        }else{
+            TreeNode head = new TreeNode(nums[(end+start)/2]);
+            head.left = helper(nums,start,(end+start)/2-1);
+            head.right = helper(nums,(end+start)/2+1,end);
+            return head;
+        }
+    }
 }
