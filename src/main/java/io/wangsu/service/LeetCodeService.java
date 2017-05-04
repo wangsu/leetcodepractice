@@ -1165,4 +1165,42 @@ public class LeetCodeService {
         }
         return result;
     }
+
+    /**
+     * 111. Minimum Depth of Binary Tree
+     * @param root
+     * @return
+     */
+    public int minDepth(TreeNode root) {
+        if(root==null){
+            return 0;
+        }
+        int min = 0;
+        List<TreeNode> list = new ArrayList();
+        list.add(root);
+        List<Integer> lvList = new ArrayList();
+        lvList.add(1);
+        while(!list.isEmpty()){
+            TreeNode cur = list.get(0);
+            list.remove(0);
+            int curLv = lvList.get(0);
+            lvList.remove(0);
+            if(cur.left==null&&cur.right==null){
+                if(min==0||curLv<min){
+                    min = curLv;
+                }
+            }
+            curLv++;
+            if(cur.left!=null){
+                list.add(cur.left);
+                lvList.add(curLv);
+            }
+            if(cur.right!=null){
+                list.add(cur.right);
+                lvList.add(curLv);
+            }
+        }
+        return min;
+
+    }
 }
