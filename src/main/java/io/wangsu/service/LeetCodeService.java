@@ -1112,4 +1112,31 @@ public class LeetCodeService {
             return head;
         }
     }
+
+    /**
+     * 112. Path Sum
+     * @param root
+     * @param sum
+     * @return
+     */
+    public boolean hasPathSum(TreeNode root, int sum) {
+
+        if(root!=null){
+            int res = sum - root.val;
+            if(res==0&&root.left==null&&root.right==null){
+                return true;
+            }else{
+                boolean leftHas = false;
+                boolean rightHas = false;
+                if(root.left!=null){
+                    leftHas = hasPathSum(root.left,res);
+                }
+                if(root.right!=null){
+                    rightHas = hasPathSum(root.right,res);
+                }
+                return (leftHas||rightHas);
+            }
+        }
+        return false;
+    }
 }
