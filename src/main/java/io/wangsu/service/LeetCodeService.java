@@ -1139,4 +1139,30 @@ public class LeetCodeService {
         }
         return false;
     }
+
+    /**
+     * 118. Pascal's Triangle
+     * @param numRows
+     * @return
+     */
+    public List<List<Integer>> generate(int numRows) {
+        List<List<Integer>> result = new ArrayList();
+        for(int i=0;i<numRows;i++){
+            List<Integer> list = new ArrayList();
+            result.add(list);
+            if(i==0){
+                list.add(1);
+            }else{
+                for(int j=0;j<result.size();j++){
+                    if(j==0||j==i){
+                        list.add(1);
+                    }else{
+                        List<Integer> prevList = result.get(i-1);
+                        list.add(prevList.get(j)+prevList.get(j-1));
+                    }
+                }
+            }
+        }
+        return result;
+    }
 }
