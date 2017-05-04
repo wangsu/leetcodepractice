@@ -1,6 +1,7 @@
 package io.wangsu;
 
 import io.wangsu.domain.ListNode;
+import io.wangsu.service.LeetCodeHardService;
 import io.wangsu.service.LeetCodeService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -23,6 +24,8 @@ public class MainTests {
 
     @Inject
     LeetCodeService leetCodeService;
+    @Inject
+    LeetCodeHardService leetCodeHardService;
 
     @Test
     public void generalTest(){
@@ -97,7 +100,7 @@ public class MainTests {
     public void test4(){
         int[] nums1 = {0,};
         int[] nums2 = {2,4,5};
-        log.info("result {}",leetCodeService.findMedianSortedArrays(nums1,nums2));
+        log.info("result {}",leetCodeHardService.findMedianSortedArrays(nums1,nums2));
     }
 
 }
