@@ -953,4 +953,56 @@ public class LeetCodeService {
             }
         }
     }
+
+
+    /**
+     * 101. Symmetric Tree
+     * @param root
+     * @return
+     */
+    public boolean isSymmetric(TreeNode root) {
+        if(root==null||(root.left==null&&root.right==null)){
+            return true;
+        }
+        if(root.left!=null&&root.right==null){
+            return false;
+        }
+        if(root.right!=null&&root.left==null){
+            return false;
+        }
+
+        List<TreeNode> leftTree = new ArrayList();
+        List<TreeNode> rightTree = new ArrayList();
+        leftTree.add(root.left);
+        rightTree.add(root.right);
+        while(!leftTree.isEmpty()&&!rightTree.isEmpty()){
+            TreeNode curL = leftTree.get(0);
+            leftTree.remove(0);
+            TreeNode curR = rightTree.get(0);
+            rightTree.remove(0);
+            if(curL.val!=curR.val){
+                return false;
+            }else{
+                if(curL.left!=null&&curR.right!=null){
+                    leftTree.add(curL.left);
+                    rightTree.add(curR.right);
+                }else if(curL.left==null&&curR.right!=null){
+                    return false;
+                }else if(curL.left!=null&&curR.right==null){
+                    return false;
+                }
+
+                if(curL.right!=null&&curR.left!=null){
+                    leftTree.add(curL.right);
+                    rightTree.add(curR.left);
+                }else if(curL.right==null&&curR.left!=null){
+                    return false;
+                }else if(curL.right!=null&&curR.left==null){
+                    return false;
+                }
+
+            }
+        }
+        return true;
+    }
 }
