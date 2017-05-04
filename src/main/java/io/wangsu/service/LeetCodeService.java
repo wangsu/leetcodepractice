@@ -1005,4 +1005,40 @@ public class LeetCodeService {
         }
         return true;
     }
+
+    /**
+     * 104. Maximum Depth of Binary Tree
+     * @param root
+     * @return
+     */
+    public int maxDepth(TreeNode root) {
+        if(root==null){
+            return 0;
+        }
+
+        List<TreeNode> tree = new ArrayList();
+        List<Integer> treeLevel = new ArrayList();
+        tree.add(root);
+        treeLevel.add(1);
+        int maxLevel = 1;
+        while(!tree.isEmpty()){
+            TreeNode curNode = tree.get(0);
+            tree.remove(0);
+            int curLevel = treeLevel.get(0);
+            if(curLevel>maxLevel){
+                maxLevel = curLevel;
+            }
+            treeLevel.remove(0);
+            curLevel++;
+            if(curNode.left!=null){
+                tree.add(curNode.left);
+                treeLevel.add(curLevel);
+            }
+            if(curNode.right!=null){
+                tree.add(curNode.right);
+                treeLevel.add(curLevel);
+            }
+        }
+        return maxLevel;
+    }
 }
