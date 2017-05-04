@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class LeetCodeHardService {
-    private static final Logger log = LoggerFactory.getLogger(LeetCodeService.class);
+    private static final Logger log = LoggerFactory.getLogger(LeetCodeHardService.class);
 
     /**
      * 4. Median of Two Sorted Arrays
