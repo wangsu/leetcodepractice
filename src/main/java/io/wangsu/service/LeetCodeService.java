@@ -965,4 +965,38 @@ public class LeetCodeService {
         }
         return 0;
     }
+
+    /**
+     * 88. Merge Sorted Array
+     * @param nums1
+     * @param m
+     * @param nums2
+     * @param n
+     */
+    public void merge(int[] nums1, int m, int[] nums2, int n) {
+        if(n==0){
+
+        }else if(m==0){
+            for(int i=0;i<n;i++){
+                nums1[i]=nums2[i];
+            }
+        }else{
+            int mPos = m-1;
+            int nPos = n-1;
+            int lastPos = m+n-1;
+            while(lastPos>=0){
+                if(mPos<0){
+                    nums1[lastPos--]=nums2[nPos--];
+                }else if(nPos<0){
+                    nums1[lastPos--]=nums1[mPos--];
+                }else{
+                    if(nums1[mPos]>nums2[nPos]){
+                        nums1[lastPos--]=nums1[mPos--];
+                    }else{
+                        nums1[lastPos--]=nums2[nPos--];
+                    }
+                }
+            }
+        }
+    }
 }
