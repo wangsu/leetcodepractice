@@ -1041,4 +1041,49 @@ public class LeetCodeService {
         }
         return maxLevel;
     }
+
+    /**
+     * 107. Binary Tree Level Order Traversal II
+     * @param root
+     * @return
+     */
+    public List<List<Integer>> levelOrderBottom(TreeNode root) {
+        List<List<Integer>> result = new ArrayList();
+        List<TreeNode> tree = new ArrayList();
+        List<Integer> treeLevel = new ArrayList();
+        if(root==null){
+            return result;
+        }
+        tree.add(root);
+        treeLevel.add(1);
+        while(!tree.isEmpty()){
+            TreeNode curNode = tree.get(0);
+            tree.remove(0);
+            int curLevel = treeLevel.get(0);
+            treeLevel.remove(0);
+            if(result.size()<curLevel){
+                List<Integer> curLvList = new ArrayList();
+                curLvList.add(curNode.val);
+                result.add(curLvList);
+            }else{
+                List<Integer> curLvList = result.get(curLevel-1);
+                curLvList.add(curNode.val);
+            }
+            curLevel++;
+            if(curNode.left!=null){
+                tree.add(curNode.left);
+                treeLevel.add(curLevel);
+            }
+            if(curNode.right!=null){
+                tree.add(curNode.right);
+                treeLevel.add(curLevel);
+            }
+
+        }
+        List<List<Integer>> revResult = new ArrayList();
+        for(int i=result.size()-1;i>=0;i--){
+            revResult.add(result.get(i));
+        }
+        return revResult;
+    }
 }
