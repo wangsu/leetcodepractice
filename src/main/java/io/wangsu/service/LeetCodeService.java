@@ -1203,4 +1203,34 @@ public class LeetCodeService {
         return min;
 
     }
+
+    /**
+     * 119. Pascal's Triangle II
+     * @param rowIndex
+     * @return
+     */
+    public List<Integer> getRow(int rowIndex) {
+        if(rowIndex<0){
+            return null;
+        }
+        List<Integer> list = new ArrayList();
+        list.add(1);
+        for(int i=1;i<=rowIndex;i++){
+            if(i==1){
+                list.add(1);
+            }else{
+                List<Integer> newlist = new ArrayList();
+                for(int j=0;j<=i;j++){
+                    if(j==0||j==i){
+                        newlist.add(1);
+                    }else{
+                        int curV = list.get(j-1)+list.get(j);
+                        newlist.add(curV);
+                    }
+                }
+                list = newlist;
+            }
+        }
+        return list;
+    }
 }
