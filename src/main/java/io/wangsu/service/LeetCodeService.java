@@ -1309,4 +1309,34 @@ public class LeetCodeService {
         }
         return result;
     }
+
+    /**
+     * 141. Linked List Cycle
+     * @param head
+     * @return
+     */
+    public boolean hasCycle(ListNode head) {
+        if(head==null||head.next==null||head.next.next==null){
+            return false;
+        }
+        ListNode slow = head.next;
+        ListNode fast = head.next.next;
+        while(slow!=null&&fast!=null){
+            if(slow==fast){
+                return true;
+            }else{
+                if(slow.next!=null){
+                    slow = slow.next;
+                }else{
+                    return false;
+                }
+                if(fast.next!=null&&fast.next.next!=null){
+                    fast = fast.next.next;
+                }else{
+                    return false;
+                }
+            }
+        }
+        return false;
+    }
 }
