@@ -73,4 +73,38 @@ public class LeetCodeMediumService {
         }
         return max;
     }
+
+    public String longestPalindrome(String s) {
+        String result = "";
+        int curPLength = 0;
+        for(int i=0;i<s.length();i++){
+            if(isPalindrome(s,i-curPLength-1,i)){
+                result = s.substring(i-curPLength-1,i+1);
+                curPLength+=2;
+            }else if(isPalindrome(s,i-curPLength,i)){
+                result = s.substring(i-curPLength,i+1);
+                curPLength+=1;
+            }
+        }
+        return result;
+    }
+
+    /**
+     * 5. Longest Palindromic Substring
+     * @param s
+     * @param start
+     * @param end
+     * @return
+     */
+    private boolean isPalindrome(String s, int start,int end){
+        if(start<0){
+            return false;
+        }
+        while(start<end){
+            if(s.charAt(start++)!=s.charAt(end--)){
+                return false;
+            }
+        }
+        return true;
+    }
 }
