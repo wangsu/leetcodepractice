@@ -1254,4 +1254,25 @@ public class LeetCodeService {
         }
         return maxP;
     }
+
+    /**
+     * 122. Best Time to Buy and Sell Stock II
+     * @param prices
+     * @return
+     */
+    public int maxProfit2(int[] prices) {
+        if(prices.length<2){
+            return 0;
+        }
+        int maxP = 0;
+        int preP = prices[0];
+        for(int i=1;i<prices.length;i++){
+            int curP = prices[i];
+            if(curP>preP){
+                maxP += curP-preP;
+            }
+            preP = curP;
+        }
+        return maxP;
+    }
 }
