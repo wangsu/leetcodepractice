@@ -4,6 +4,9 @@ import io.wangsu.domain.ListNode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Created by Wangs on 5/4/2017.
  */
@@ -44,5 +47,30 @@ public class LeetCodeMediumService {
             curResult.next = new ListNode(1);
         }
         return result;
+    }
+
+    /**
+     * 3. Longest Substring Without Repeating Characters
+     * @param s
+     * @return
+     */
+    public int lengthOfLongestSubstring(String s) {
+        if(s==null){
+            return 0;
+        }
+        if(s!=null&&s.length()<2){
+            return s.length();
+        }
+        Map<String,Integer> map = new HashMap();
+        int slow = 0;
+        int max = 0;
+        for(int i=0;i<s.length();i++){
+            if(map.containsKey(String.valueOf(s.charAt(i)))){
+                slow = Math.max(slow,map.get(String.valueOf(s.charAt(i)))+1);
+            }
+            map.put(String.valueOf(s.charAt(i)),i);
+            max = Math.max(i-slow+1,max);
+        }
+        return max;
     }
 }
