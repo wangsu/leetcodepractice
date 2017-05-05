@@ -1292,4 +1292,21 @@ public class LeetCodeService {
         }
         return true;
     }
+
+    /**
+     * 136. Single Number
+     * @param nums
+     * @return
+     */
+    public int singleNumber(int[] nums) {
+        int result = 0;
+        for(int i=0;i<nums.length;i++){
+            if(i==0){
+                result =nums[i];
+            }else{
+                result ^= nums[i];
+            }
+        }
+        return result;
+    }
 }
