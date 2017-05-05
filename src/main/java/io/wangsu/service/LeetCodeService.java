@@ -1275,4 +1275,21 @@ public class LeetCodeService {
         }
         return maxP;
     }
+
+    /**
+     * 125. Valid Palindrome
+     * @param s
+     * @return
+     */
+    public boolean isPalindrome(String s) {
+        s= s.replaceAll("[^A-Za-z0-9]","");
+        for(int i=0;i<s.length()/2;i++){
+            String starting = String.valueOf(s.charAt(i));
+            String ending = String.valueOf(s.charAt(s.length()-1-i));
+            if(!starting.equalsIgnoreCase(ending)){
+                return false;
+            }
+        }
+        return true;
+    }
 }
