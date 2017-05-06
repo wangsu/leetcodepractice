@@ -107,4 +107,43 @@ public class LeetCodeMediumService {
         }
         return true;
     }
+
+    /**
+     * 8. String to Integer (atoi)
+     * @param str
+     * @return
+     */
+    public int myAtoi(String str) {
+        if(str==null||str.length()==0){
+            return 0;
+        }
+        str = str.trim();
+        int sign = 1;
+        int pos = 0;
+        if(str.startsWith("-")){
+            sign = -1;
+            pos++;
+        }
+        if(str.startsWith("+")){
+            sign = 1;
+            pos++;
+        }
+        long sum = 0;
+        while(pos<str.length()){
+            if (!Character.isDigit(str.charAt(pos))){
+                return (int) sum * sign;
+            }
+            sum = sum*10 + Integer.parseInt(String.valueOf(str.charAt(pos)));
+            if(sum>Integer.MAX_VALUE){
+                if(sign == -1){
+                    return Integer.MIN_VALUE;
+                }else{
+                    return Integer.MAX_VALUE;
+                }
+            }
+            pos++;
+        }
+        return (int) sum * sign;
+
+    }
 }
