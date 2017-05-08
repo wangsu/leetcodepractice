@@ -146,4 +146,27 @@ public class LeetCodeMediumService {
         return (int) sum * sign;
 
     }
+
+    /**
+     * 11. Container With Most Water
+     * @param height
+     * @return
+     */
+    public int maxArea(int[] height) {
+        int result = 0;
+        if(height.length<2){
+            return 0;
+        }
+        int slow=0;
+        int fast=height.length-1;
+        while(slow<fast&&slow<height.length-1){
+            result = Math.max(result,(fast-slow)*Math.min(height[fast],height[slow]));
+            if(height[slow]<height[fast]){
+                slow++;
+            }else{
+                fast--;
+            }
+        }
+        return result;
+    }
 }
