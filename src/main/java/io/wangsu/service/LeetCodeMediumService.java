@@ -3,13 +3,17 @@ package io.wangsu.service;
 import io.wangsu.domain.ListNode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
  * Created by Wangs on 5/4/2017.
  */
+@Service
 public class LeetCodeMediumService {
     private static final Logger log = LoggerFactory.getLogger(LeetCodeMediumService.class);
 
@@ -168,5 +172,40 @@ public class LeetCodeMediumService {
             }
         }
         return result;
+    }
+
+    /**
+     * 6. ZigZag Conversion
+     * @param s
+     * @param numRows
+     * @return
+     */
+    public String convert(String s, int numRows) {
+        if(s.length()<=1||numRows==1){
+            return s;
+        }
+        List<List<Character>> list = new ArrayList();
+        for(int i=0;i<s.length();i++){
+            int col = i%(2*numRows-2);
+            if(col>=numRows){
+                col = 2*numRows-col-2;
+            }
+
+            if(list.size()<numRows){
+                List<Character> column = new ArrayList();
+                list.add(column);
+                column.add(s.charAt(i));
+            }else{
+                List<Character> column = list.get(col);
+                column.add(s.charAt(i));
+            }
+        }
+        StringBuilder sb = new StringBuilder();
+        for(List<Character> column:list){
+            for(Character c:column){
+                sb.append(String.valueOf(c));
+            }
+        }
+        return sb.toString();
     }
 }
