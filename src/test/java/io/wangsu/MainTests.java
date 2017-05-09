@@ -2,6 +2,7 @@ package io.wangsu;
 
 import io.wangsu.domain.ListNode;
 import io.wangsu.service.LeetCodeHardService;
+import io.wangsu.service.LeetCodeMediumService;
 import io.wangsu.service.LeetCodeService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -24,6 +25,8 @@ public class MainTests {
 
     @Inject
     LeetCodeService leetCodeService;
+    @Inject
+    LeetCodeMediumService leetCodeMediumService;
     @Inject
     LeetCodeHardService leetCodeHardService;
 
@@ -101,6 +104,12 @@ public class MainTests {
         int[] nums1 = {0,};
         int[] nums2 = {2,4,5};
         log.info("result {}",leetCodeHardService.findMedianSortedArrays(nums1,nums2));
+    }
+
+    @Test
+    public void test6(){
+        log.info("result {}",leetCodeMediumService.convert("PAYPALISHIRING",3));
+        log.info("result {}",leetCodeMediumService.convert("ABCD",2));
     }
 
 }
