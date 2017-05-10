@@ -290,4 +290,39 @@ public class LeetCodeMediumService {
         }
         return result;
     }
+
+    /**
+     * 17. Letter Combinations of a Phone Number
+     * @param digits
+     * @return
+     */
+    public List<String> letterCombinations(String digits) {
+        List<String> result = new ArrayList();
+        if(digits==null||digits.isEmpty()){
+            return result;
+        }
+        int[] numbers = new int[]{0,1,2,3,4,5,6,7,8,9};
+        String[] letters = new String[]{" ","","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
+        int totalSize = 1;
+        String[] strsCur = new String[digits.length()];
+        for(int i=0;i<digits.length();i++){
+            int curDigit = Integer.parseInt(String.valueOf(digits.charAt(i)));
+            String letter = letters[curDigit];
+            totalSize *= letter.length();
+            strsCur[i] = letter;
+        }
+
+        for(int i=0;i<totalSize;i++){
+            String now = "";
+            int curSize = totalSize;
+            for(int j=0;j<digits.length();j++){
+                String letter = strsCur[j];
+                int lengthForCurString = letter.length();
+                curSize /= lengthForCurString;
+                now += String.valueOf(letter.charAt((i/curSize)%lengthForCurString));
+            }
+            result.add(now);
+        }
+        return result;
+    }
 }

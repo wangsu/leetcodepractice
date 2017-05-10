@@ -117,4 +117,10 @@ public class MainTests {
         //log.info("result {}",leetCodeMediumService.threeSumClosest(new int[]{0,2,1,-3},1));
         log.info("result {}",leetCodeMediumService.threeSumClosest(new int[]{1,2,4,8,16,32,64,128},82));
     }
+
+    @Test
+    public void test17(){
+        //log.info("result {}",leetCodeMediumService.threeSumClosest(new int[]{0,2,1,-3},1));
+        log.info("result {}",leetCodeMediumService.letterCombinations("22"));
+    }
 }
