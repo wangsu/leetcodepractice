@@ -112,4 +112,9 @@ public class MainTests {
         log.info("result {}",leetCodeMediumService.convert("ABCD",2));
     }
 
+    @Test
+    public void test16(){
+        //log.info("result {}",leetCodeMediumService.threeSumClosest(new int[]{0,2,1,-3},1));
+        log.info("result {}",leetCodeMediumService.threeSumClosest(new int[]{1,2,4,8,16,32,64,128},82));
+    }
 }

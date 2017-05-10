@@ -261,4 +261,33 @@ public class LeetCodeMediumService {
         }
         return result;
     }
+
+    /**
+     * 16. 3Sum Closest
+     * @param nums
+     * @param target
+     * @return
+     */
+    public int threeSumClosest(int[] nums, int target) {
+        Arrays.sort(nums);
+        int result = nums[0]+nums[1]+nums[2];
+        int diff = Math.abs(target-result);
+        for(int i=0;i<nums.length-2;i++){
+            int j = i+1;
+            int k = nums.length-1;
+            while(j<k){
+                int curSum = nums[j]+nums[k]+nums[i];
+                if(curSum>target){
+                    k--;
+                }else{
+                    j++;
+                }
+                if(Math.abs(target-curSum)<diff){
+                    result = curSum;
+                    diff = Math.abs(target-curSum);
+                }
+            }
+        }
+        return result;
+    }
 }
