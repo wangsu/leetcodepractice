@@ -414,4 +414,26 @@ public class LeetCodeMediumService {
             result.add(part);
         }
     }
+
+    /**
+     * 24. Swap Nodes in Pairs 
+     * @param head
+     * @return
+     */
+    public ListNode swapPairs(ListNode head) {
+        if(head==null){
+            return head;
+        }
+        ListNode start = new ListNode(0);
+        start.next = head;
+        ListNode from = start;
+        while(from.next!=null&&from.next.next!=null){
+            ListNode first = from.next;
+            ListNode second = from.next.next;
+            first.next = second.next;
+            second.next = first;
+            from = first;
+        }
+        return start.next;
+    }
 }
