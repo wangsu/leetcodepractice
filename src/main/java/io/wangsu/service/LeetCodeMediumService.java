@@ -388,4 +388,30 @@ public class LeetCodeMediumService {
         slow.next = slow.next.next;
         return start.next;
     }
+
+    /**
+     * 22. Generate Parentheses
+     * @param n
+     * @return
+     */
+    public List<String> generateParenthesis(int n) {
+        List<String> result = new ArrayList();
+        generateLoop("",result,n,n);
+        return result;
+    }
+
+    private void generateLoop(String part, List<String> result, int left, int right){
+        if(left>right){
+            return;
+        }
+        if(left>0){
+            generateLoop(part+"(",result,left-1,right);
+        }
+        if(right>0){
+            generateLoop(part+")",result,left,right-1);
+        }
+        if(left==0&&right==0){
+            result.add(part);
+        }
+    }
 }
