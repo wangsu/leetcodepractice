@@ -436,4 +436,44 @@ public class LeetCodeMediumService {
         }
         return start.next;
     }
+
+    /**
+     * 29. Divide Two Integers
+     * @param dividend
+     * @param divisor
+     * @return
+     */
+    public int divide(int dividend, int divisor) {
+        boolean isNeg = false;
+        if(dividend>0&&divisor<0){
+            isNeg = true;
+        }else if(dividend<0&&divisor>0){
+            isNeg = true;
+        }
+        long ldividend = Math.abs((long)dividend);
+        long ldivisor = Math.abs((long)divisor);
+
+        long result = 0;
+        long sub = ldivisor;
+        long c = 1;
+
+        while(ldividend>=ldivisor){
+            if(ldividend>=sub){
+                ldividend -= sub;
+                result += c;
+                sub = sub << 1;
+                c = c<<1;
+            }else{
+                sub = sub >>1;
+                c = c>>1;
+            }
+        }
+
+        if(isNeg){
+            result = -result;
+        }
+        return (int)Math.min(Math.max(Integer.MIN_VALUE,result),Integer.MAX_VALUE);
+
+    }
+
 }
