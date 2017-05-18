@@ -476,4 +476,43 @@ public class LeetCodeMediumService {
 
     }
 
+    /**
+     * 31. Next Permutation
+     * @param nums
+     */
+    public void nextPermutation(int[] nums) {
+        if(nums.length<=1){
+            return;
+        }
+        int first = -1;
+        for(int i=nums.length-1;i>=1;i--){
+            if(nums[i-1]<nums[i]){
+                first = i-1;
+                break;
+            }
+        }
+        int second = 0;
+        if(first!=-1){
+            second = first +1;
+            for(int i=nums.length-1;i>first;i--){
+                if(nums[i]>nums[first]){
+                    int temp = nums[i];
+                    nums[i] = nums[first];
+                    nums[first] = temp;
+                    break;
+                }
+            }
+        }
+        int end = nums.length-1;
+        while(second<end){
+            int temp = nums[second];
+            nums[second] = nums[end];
+            nums[end] = temp;
+            second ++;
+            end --;
+        }
+
+        return;
+    }
+
 }

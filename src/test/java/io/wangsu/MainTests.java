@@ -129,4 +129,11 @@ public class MainTests {
         //log.info("result {}",leetCodeMediumService.threeSumClosest(new int[]{0,2,1,-3},1));
         log.info("result {}",leetCodeMediumService.fourSum(new int[]{0,0,0,0},0));
     }
+
+    @Test
+    public void test31(){
+        int[] a = new int[]{1,3,2};
+        leetCodeMediumService.nextPermutation(a);
+        log.info("result {}",a);
+    }
 }
