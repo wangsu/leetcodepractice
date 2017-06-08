@@ -515,4 +515,24 @@ public class LeetCodeMediumService {
         return;
     }
 
+    /**
+     * 33. Search in Rotated Sorted Array
+     * @param nums
+     * @param target
+     * @return
+     */
+    public int search(int[] nums, int target) {
+        int low = 0;
+        int high = nums.length-1;
+        while(low<high){
+            int medium = (low+high)/2;
+            if(nums[0]>target^target>nums[medium]^nums[0]>nums[medium]){
+                low = medium+1;
+            }else{
+                high = medium;
+            }
+        }
+        return low==high&&nums[low]==target?low:-1;
+    }
+
 }
