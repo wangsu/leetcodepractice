@@ -535,4 +535,53 @@ public class LeetCodeMediumService {
         return low==high&&nums[low]==target?low:-1;
     }
 
+    /**
+     * 34. Search for a Range
+     * @param nums
+     * @param target
+     * @return
+     */
+    public int[] searchRange(int[] nums, int target) {
+        int[] result = new int[2];
+        result[0] = findFirst(nums, target);
+        result[1] = findLast(nums, target);
+        return result;
+    }
+
+    private int findFirst(int[] nums,int target){
+        int result = -1;
+        int start = 0;
+        int end = nums.length-1;
+        while(start<=end){
+            int mid = (start+end)/2;
+            if(nums[mid]>=target){
+                end = mid -1;
+            }else{
+                start = mid +1;
+            }
+            if(nums[mid]==target){
+                result = mid;
+            }
+        }
+        return result;
+    }
+
+    private int findLast(int[] nums,int target){
+        int result = -1;
+        int start = 0;
+        int end = nums.length-1;
+        while(start<=end){
+            int mid = (start+end)/2;
+            if(nums[mid]<=target){
+                start = mid +1;
+            }else{
+                end = mid -1;
+            }
+            if(nums[mid]==target){
+                result = mid;
+            }
+        }
+        return result;
+    }
+
 }
