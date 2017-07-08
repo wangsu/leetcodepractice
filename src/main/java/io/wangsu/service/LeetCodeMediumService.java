@@ -637,4 +637,37 @@ public class LeetCodeMediumService {
             }
         }
     }
+
+    /**
+     * 40. Combination Sum II
+     * @param candidates
+     * @param target
+     * @return
+     */
+    public List<List<Integer>> combinationSum2(int[] candidates, int target) {
+        List<List<Integer>> result = new ArrayList<>();
+        if(candidates==null||candidates.length==0) return result;
+        Arrays.sort(candidates);
+        helper2(candidates,target,0,new ArrayList<Integer>(),result);
+        return result;
+    }
+
+    private void helper2(int[] candidates, int target, int pos, List<Integer> comb, List<List<Integer>> result){
+        if(target==0){
+            result.add(new ArrayList<Integer>(comb));
+            return;
+        }
+        for(int i=pos;i<candidates.length;i++){
+            int newTarget = target - candidates[i];
+            if(newTarget>=0){
+                comb.add(candidates[i]);
+                helper2(candidates, newTarget, i+1, comb, result);
+                comb.remove(comb.size()-1);
+            }else{
+                break;
+            }
+            while(i<candidates.length-1&&candidates[i]==candidates[i+1])
+                i++;
+        }
+    }
 }
