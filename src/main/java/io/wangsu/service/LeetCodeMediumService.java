@@ -584,4 +584,23 @@ public class LeetCodeMediumService {
         return result;
     }
 
+    /**
+     * 36. Valid Sudoku
+     * @param board
+     * @return
+     */
+    public boolean isValidSudoku(char[][] board) {
+        Set set  = new HashSet();
+        for(int i=0;i<9;i++){
+            for(int j=0;j<9;j++){
+                char cur = board[i][j];
+                if(cur!='.'){
+                    if(!set.add(cur+" at row "+i)||!set.add(cur+" at col "+j)||!set.add(cur+" at "+i/3+" block "+j/3)){
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
+    }
 }
