@@ -751,4 +751,27 @@ public class LeetCodeMediumService {
             list.remove(list.size()-1);
         }
     }
+
+    /**
+     * 48. Rotate Image
+     * @param matrix
+     */
+    public void rotate(int[][] matrix) {
+        //first transpose
+        for(int i=0;i<matrix.length;i++){
+            for(int j=i;j<matrix[0].length;j++){
+                int temp = matrix[i][j];
+                matrix[i][j] = matrix[j][i];
+                matrix[j][i] = temp;
+            }
+        }
+        //then flip by mid column.
+        for(int i=0;i<matrix.length;i++){
+            for(int j=0;j<matrix[0].length/2;j++){
+                int temp = matrix[i][j];
+                matrix[i][j] = matrix[i][matrix[0].length-j-1];
+                matrix[i][matrix[0].length-j-1] = temp;
+            }
+        }
+    }
 }
