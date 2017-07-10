@@ -774,4 +774,24 @@ public class LeetCodeMediumService {
             }
         }
     }
+
+    /**
+     * 49. Group Anagrams
+     * @param strs
+     * @return
+     */
+    public List<List<String>> groupAnagrams(String[] strs) {
+        if(strs==null||strs.length==0) return new ArrayList<List<String>>();
+        Map<String, List<String>> map = new HashMap<>();
+        for(String str:strs){
+            char[] chars = str.toCharArray();
+            Arrays.sort(chars);
+            String newStr = String.valueOf(chars);
+            if(!map.containsKey(newStr)){
+                map.put(newStr,new ArrayList<String>());
+            }
+            map.get(newStr).add(str);
+        }
+        return new ArrayList<List<String>>(map.values());
+    }
 }
