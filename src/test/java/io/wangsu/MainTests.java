@@ -136,4 +136,15 @@ public class MainTests {
         leetCodeMediumService.nextPermutation(a);
         log.info("result {}",a);
     }
+
+    @Test
+    public void test54(){
+        int[][] grid =new int[][] {
+                new int[] { 7 },
+                new int[] { 9},
+                new int[] { 6}
+        };
+
+        log.info("result {}",leetCodeMediumService.spiralOrder(grid));
+    }
 }
