@@ -794,4 +794,30 @@ public class LeetCodeMediumService {
         }
         return new ArrayList<List<String>>(map.values());
     }
+
+    /**
+     * 50. Pow(x, n)
+     * @param x
+     * @param n
+     * @return
+     */
+    public double myPow(double x, int n) {
+        //x^n = x^(n/2) * x^(n/2) * x^(n%2)
+        if(n>=0){
+            return myPowPositive(x,n);
+        }else{
+            return 1/myPowPositive(x,-n);
+        }
+    }
+
+    private double myPowPositive(double x, int n){
+        if(n==0) return 1;
+        double result = myPowPositive(x,n/2);
+        result *= result;
+        //n%2 == 1 ???
+        if(n%2!=0){
+            result *= x;
+        }
+        return result;
+    }
 }
