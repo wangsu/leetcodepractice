@@ -908,4 +908,35 @@ public class LeetCodeMediumService {
         result.add(new Interval(start,end));
         return result;
     }
+
+    /**
+     * 59. Spiral Matrix II
+     * @param n
+     * @return
+     */
+    public int[][] generateMatrix(int n) {
+        int[][] result = new int[n][n];
+        int num = 1;
+        for(int i=0;i<n/2;i++){
+            int last = n-i-1;
+            //top
+            for(int j=i;j<last;j++){
+                result[i][j] = num++;
+            }
+            //right
+            for(int j=i;j<last;j++){
+                result[j][last] = num++;
+            }
+            //bot
+            for(int j=last;j>i;j--){
+                result[last][j] = num++;
+            }
+            //left
+            for(int j=last;j>i;j--){
+                result[j][i] = num++;
+            }
+        }
+        if(n%2==1) result[n/2][n/2] = num;
+        return result;
+    }
 }
