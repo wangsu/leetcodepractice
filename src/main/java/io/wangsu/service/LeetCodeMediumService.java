@@ -1,5 +1,6 @@
 package io.wangsu.service;
 
+import io.wangsu.domain.Interval;
 import io.wangsu.domain.ListNode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -882,5 +883,29 @@ public class LeetCodeMediumService {
             }
         }
         return true;
+    }
+
+    /**
+     * 56. Merge Intervals
+     * @param intervals
+     * @return
+     */
+    public List<Interval> merge(List<Interval> intervals) {
+        List<Interval> result =new ArrayList<>();
+        if(intervals==null||intervals.size()==0) return result;
+        intervals.sort((i1,i2)->Integer.compare(i1.start,i2.start));
+        int start = intervals.get(0).start;
+        int end = intervals.get(0).end;
+        for(Interval cur:intervals){
+            if(cur.start<=end){
+                end = Math.max(end,cur.end);
+            }else{
+                result.add(new Interval(start,end));
+                start = cur.start;
+                end = cur.end;
+            }
+        }
+        result.add(new Interval(start,end));
+        return result;
     }
 }
