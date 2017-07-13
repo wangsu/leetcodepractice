@@ -973,4 +973,31 @@ public class LeetCodeMediumService {
 
         return result;
     }
+
+    /**
+     * 61. Rotate List
+     * @param head
+     * @param k
+     * @return
+     */
+    public ListNode rotateRight(ListNode head, int k) {
+        if(k<1||head==null) return head;
+        ListNode currectNode = head;
+        int i=1;
+        while(currectNode.next!=null){
+            currectNode = currectNode.next;
+            i++;
+        }
+        currectNode.next = head;
+        k = i - k%i;
+        while(k>0){
+            currectNode = currectNode.next;
+            k--;
+        }
+
+        head = currectNode.next;
+        currectNode.next = null;
+
+        return head;
+    }
 }
