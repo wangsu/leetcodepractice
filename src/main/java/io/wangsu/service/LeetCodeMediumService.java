@@ -939,4 +939,38 @@ public class LeetCodeMediumService {
         if(n%2==1) result[n/2][n/2] = num;
         return result;
     }
+
+    /**
+     * 60. Permutation Sequence
+     * @param n
+     * @param k
+     * @return
+     */
+    public String getPermutation(int n, int k) {
+        int[] factorial = new int[n];
+        List<Character> list = new ArrayList<>();
+        String result = "";
+
+        //1st get factorial array
+        factorial[0] = 1;
+        for(int i=1;i<n;i++){
+            factorial[i]=factorial[i-1]*i;
+        }
+
+        //2nd get char list
+        for(int i=1;i<=n;i++){
+            list.add((char)(i+'0'));
+        }
+        //3 k init
+        k--;
+        for(int i=n;i>=1;i--){
+            //4 find current position in char list.
+            int j =  k/factorial[i-1];
+            result += list.get(j);
+            list.remove(j);
+            k %= factorial[i-1];
+        }
+
+        return result;
+    }
 }
