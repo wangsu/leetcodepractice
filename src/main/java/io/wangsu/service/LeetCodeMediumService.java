@@ -1206,4 +1206,28 @@ public class LeetCodeMediumService {
             }
         }
     }
+
+    /**
+     * 77. Combinations
+     * @param n
+     * @param k
+     * @return
+     */
+    public List<List<Integer>> combine(int n, int k) {
+        List<List<Integer>> result = new ArrayList<>();
+        combinehelper(new ArrayList<Integer>(), result, 1, n, k);
+        return result;
+    }
+
+    private void combinehelper(List<Integer> list, List<List<Integer>> result, int start, int n, int k){
+        if(k==0){
+            result.add(new ArrayList(list));
+            return;
+        }
+        for(int i=start;i<=n;i++){
+            list.add(i);
+            combinehelper(list, result,i+1,n,k-1);
+            list.remove(list.size()-1);
+        }
+    }
 }
