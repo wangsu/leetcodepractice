@@ -1187,4 +1187,23 @@ public class LeetCodeMediumService {
         }
         return false;
     }
+
+    /**
+     * 75. Sort Colors
+     * @param nums
+     */
+    public void sortColors(int[] nums) {
+        int i=-1;
+        int j=-1;
+        for(int k=0;k<nums.length;k++){
+            int v = nums[k];
+            nums[k] = 2;
+            if(v==0){
+                nums[++j]=1;
+                nums[++i]=0;
+            }else if(v==1){
+                nums[++j]=1;
+            }
+        }
+    }
 }
