@@ -1230,4 +1230,25 @@ public class LeetCodeMediumService {
             list.remove(list.size()-1);
         }
     }
+
+    /**
+     * 78. Subsets
+     * @param nums
+     * @return
+     */
+    public List<List<Integer>> subsets(int[] nums) {
+        Arrays.sort(nums);
+        List<List<Integer>> result = new ArrayList<>();
+        subsetsHelper(new ArrayList<Integer>(), result, 0, nums);
+        return result;
+    }
+
+    private void subsetsHelper(List<Integer> list, List<List<Integer>> result, int start, int[] nums){
+        result.add(new ArrayList(list));
+        for(int i =start;i<nums.length;i++){
+            list.add(nums[i]);
+            subsetsHelper(list,result,i+1,nums);
+            list.remove(list.size()-1);
+        }
+    }
 }
