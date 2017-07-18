@@ -1083,4 +1083,33 @@ public class LeetCodeMediumService {
         }
         return result[m-1][n-1];
     }
+
+    /**
+     * 71. Simplify Path
+     * @param path
+     * @return
+     */
+    public String simplifyPath(String path) {
+        String[] strs = path.split("/");
+        List<String> result = new ArrayList<>();
+        for(String str:strs){
+            if(str.isEmpty()||str.equals(".")){
+                continue;
+            }else if(str.equals("..")){
+                if(result.size()>0){
+                    result.remove(result.size()-1);
+                }
+            }else{
+                result.add(str);
+            }
+        }
+        StringBuilder sb = new StringBuilder();
+        for(String str:result){
+            sb.append("/").append(str);
+        }
+        if(result.size()==0){
+            sb.append("/");
+        }
+        return sb.toString();
+    }
 }
