@@ -1251,4 +1251,34 @@ public class LeetCodeMediumService {
             list.remove(list.size()-1);
         }
     }
+
+    /**
+     * 79. Word Search
+     * @param board
+     * @param word
+     * @return
+     */
+    public boolean exist(char[][] board, String word) {
+        if(board==null||board.length==0||board[0].length==0||word==null)return false;
+        if(word.length()==0)return true;
+        for(int i=0;i<board.length;i++){
+            for(int j=0;j<board[0].length;j++){
+                if(board[i][j]==word.charAt(0)){
+                    if(existHelper(board,word,i,j,0)){
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    private boolean existHelper(char[][] board, String word, int i, int j, int n){
+        if(word.length()==n)return true;
+        if(i<0||i>board.length-1||j<0||j>board[0].length-1||word.charAt(n)!=board[i][j])return false;
+        board[i][j]='#';
+        boolean result = existHelper(board, word, i+1, j, n+1)||existHelper(board, word, i-1, j, n+1)||existHelper(board, word, i, j+1, n+1)||existHelper(board, word, i, j-1, n+1);
+        board[i][j]=word.charAt(n);
+        return result;
+    }
 }
