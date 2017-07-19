@@ -1281,4 +1281,34 @@ public class LeetCodeMediumService {
         board[i][j]=word.charAt(n);
         return result;
     }
+
+    /**
+     * 80. Remove Duplicates from Sorted Array II
+     * @param nums
+     * @return
+     */
+    public int removeDuplicates(int[] nums) {
+        if(nums==null||nums.length<=2)return nums.length;
+        int slow=1,fast = 1;
+        boolean dup = false;
+        while(fast<nums.length){
+            if(nums[fast]!=nums[fast-1]){
+                nums[slow++]=nums[fast++];
+                dup = false;
+            }else{
+                if(dup){
+                    int skip = fast+1;
+                    while(skip<nums.length&&nums[skip]==nums[fast]){
+                        skip++;
+                    }
+                    fast = skip;
+                    dup = false;
+                }else{
+                    nums[slow++]=nums[fast++];
+                    dup = true;
+                }
+            }
+        }
+        return slow;
+    }
 }
