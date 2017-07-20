@@ -1311,4 +1311,40 @@ public class LeetCodeMediumService {
         }
         return slow;
     }
+
+    /**
+     * 81. Search in Rotated Sorted Array II
+     * @param nums
+     * @param target
+     * @return
+     */
+    public boolean earchsInRotatedSortedArrayII(int[] nums, int target) {
+        if(nums==null||nums.length==0)return false;
+        int start = 0;
+        int end = nums.length-1;
+        while(start<=end){
+            int mid = (start+end)/2;
+            if(nums[mid]==target)return true;
+            else if(nums[start]==nums[mid]&&nums[mid]==nums[end]){
+                start++;end--;
+            }else if(nums[start]==nums[mid]){
+                start = mid+1;
+            }else if(nums[mid]==nums[end]){
+                end = mid;
+            }else if(nums[start]<nums[mid]){ //left sorted
+                if(nums[start]<=target && target < nums[mid]){
+                    end = mid-1;
+                }else{
+                    start = mid;
+                }
+            }else if(nums[start]>nums[mid]){ //right sorted
+                if(nums[mid]<target && target <= nums[end]){
+                    start = mid+1;
+                }else{
+                    end = mid-1;
+                }
+            }
+        }
+        return false;
+    }
 }
