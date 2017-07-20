@@ -1347,4 +1347,31 @@ public class LeetCodeMediumService {
         }
         return false;
     }
+
+    /**
+     * 82. Remove Duplicates from Sorted List II
+     * @param head
+     * @return
+     */
+    public ListNode deleteDuplicates(ListNode head) {
+        ListNode preHead = new ListNode(0);
+        preHead.next = head;
+        ListNode slow = preHead;
+        ListNode fast = head;
+
+        while(fast!=null){
+            while(fast.next != null && fast.val == fast.next.val){
+                //skip all
+                fast = fast.next;
+            }
+            if(slow.next==fast){
+                slow = slow.next;
+            }else{
+                slow.next = fast.next;
+            }
+            fast = fast.next;
+
+        }
+        return preHead.next;
+    }
 }
