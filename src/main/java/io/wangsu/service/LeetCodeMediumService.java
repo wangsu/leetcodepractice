@@ -1178,12 +1178,12 @@ public class LeetCodeMediumService {
             int mid = (start+end)/2;
             int row = mid/n;
             int col = mid%n;
-            if(matrix[row][col]==target)return true;
-            else if(matrix[row][col]>target){
-                end = mid - 1;
-            }else{
-                start = mid +1;
-            }
+        }
+        if(matrix[row][col]==target)return true;
+        else if(matrix[row][col]>target){
+            end = mid - 1;
+        }else{
+            start = mid +1;
         }
         return false;
     }
@@ -1373,5 +1373,31 @@ public class LeetCodeMediumService {
 
         }
         return preHead.next;
+    }
+
+    /**
+     * 86. Partition List
+     * @param head
+     * @param x
+     * @return
+     */
+    public ListNode partition(ListNode head, int x) {
+        ListNode head1 = new ListNode(0);
+        ListNode head1_start = head1;
+        ListNode head2 = new ListNode(0);
+        ListNode head2_start = head2;
+        while(head!=null){
+            if(head.val<x){
+                head1_start.next = head;
+                head1_start = head1_start.next;
+            }else{
+                head2_start.next = head;
+                head2_start = head2_start.next;
+            }
+            head = head.next;
+        }
+        head1_start.next = head2.next;
+        head2_start.next = null;
+        return head1.next;
     }
 }
