@@ -1414,4 +1414,30 @@ public class LeetCodeMediumService {
         }
         return result;
     }
+
+    /**
+     * 90. Subsets II
+     * @param nums
+     * @return
+     */
+    public List<List<Integer>> subsetsWithDup(int[] nums) {
+        Arrays.sort(nums);
+        List<List<Integer>> result = new ArrayList<>();
+        subsetsWithDupHelper(result, new ArrayList<Integer>(), 0, nums);
+        return result;
+    }
+
+    private void subsetsWithDupHelper(List<List<Integer>> result, List<Integer> inter, int pos, int[] nums){
+        if(pos<=nums.length){
+            result.add(new ArrayList(inter));
+        }
+        int i=pos;
+        while(i<nums.length){
+            inter.add(nums[i]);
+            subsetsWithDupHelper(result, inter, i+1, nums);
+            inter.remove(inter.size()-1);
+            i++;
+            while(i<nums.length && nums[i]==nums[i-1])i++;
+        }
+    }
 }
