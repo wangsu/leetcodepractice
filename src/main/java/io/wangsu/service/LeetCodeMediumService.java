@@ -1400,4 +1400,18 @@ public class LeetCodeMediumService {
         head2_start.next = null;
         return head1.next;
     }
+
+    /**
+     * 89. Gray Code
+     * @param n
+     * @return
+     */
+    public List<Integer> grayCode(int n) {
+        List<Integer> result = new ArrayList();
+        for(int i=0;i<(1<<n);i++){
+            int x = i^i>>1;
+            result.add(x);
+        }
+        return result;
+    }
 }
