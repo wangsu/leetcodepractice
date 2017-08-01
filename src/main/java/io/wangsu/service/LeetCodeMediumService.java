@@ -1178,12 +1178,12 @@ public class LeetCodeMediumService {
             int mid = (start+end)/2;
             int row = mid/n;
             int col = mid%n;
-        }
-        if(matrix[row][col]==target)return true;
-        else if(matrix[row][col]>target){
-            end = mid - 1;
-        }else{
-            start = mid +1;
+            if(matrix[row][col]==target)return true;
+            else if(matrix[row][col]>target){
+                end = mid - 1;
+            }else{
+                start = mid +1;
+            }
         }
         return false;
     }
@@ -1439,5 +1439,32 @@ public class LeetCodeMediumService {
             i++;
             while(i<nums.length && nums[i]==nums[i-1])i++;
         }
+    }
+
+    /**
+     * 91. Decode Ways
+     * @param s
+     * @return
+     */
+    public int numDecodings(String s) {
+        if(s==null||s.length()==0||s.charAt(0)=='0')return 0;
+        int[] result = new int[s.length()+1];
+        result[0]=1;
+        result[1]=1;
+        for(int i=2;i<=s.length();i++){
+            if(isValid(s.substring(i-1,i))){
+                result[i]+=result[i-1];
+            }
+            if(isValid(s.substring(i-2,i))){
+                result[i]+=result[i-2];
+            }
+        }
+        return result[s.length()];
+    }
+
+    private boolean isValid(String subS){
+        if(subS.charAt(0)=='0')return false;
+        int value = Integer.valueOf(subS);
+        return value>0&&value<=26;
     }
 }
