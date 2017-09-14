@@ -1,6 +1,7 @@
 package io.wangsu;
 
 import io.wangsu.domain.ListNode;
+import io.wangsu.domain.TreeNode;
 import io.wangsu.service.LeetCodeHardService;
 import io.wangsu.service.LeetCodeMediumService;
 import io.wangsu.service.LeetCodeService;
@@ -146,5 +147,13 @@ public class MainTests {
         };
 
         log.info("result {}",leetCodeMediumService.spiralOrder(grid));
+    }
+
+    @Test
+    public void test94(){
+        TreeNode root = new TreeNode(1);
+        root.right = new TreeNode(2);
+        root.right.left = new TreeNode(3);
+        log.info("result {}",leetCodeMediumService.inorderTraversal(root));
     }
 }

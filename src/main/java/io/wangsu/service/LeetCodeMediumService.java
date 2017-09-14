@@ -2,6 +2,7 @@ package io.wangsu.service;
 
 import io.wangsu.domain.Interval;
 import io.wangsu.domain.ListNode;
+import io.wangsu.domain.TreeNode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -1512,5 +1513,28 @@ public class LeetCodeMediumService {
             if(((s.startsWith("0"))&&s.length()>1)||(i==3&&Integer.parseInt(s)>=256))continue;
             restoreIp(ipaddress,result,index+i,restored+s+(count==3?"":"."),count+1);
         }
+    }
+
+    /**
+     * 94. Binary Tree Inorder Traversal
+     * @param root
+     * @return
+     */
+    public List<Integer> inorderTraversal(TreeNode root) {
+        List<Integer> result = new ArrayList();
+        if(root==null)return result;
+        List<TreeNode> todoNodes = new ArrayList();
+        TreeNode cur = root;
+        while(cur!=null||!todoNodes.isEmpty()){
+            while(cur!=null){
+                todoNodes.add(0,cur);
+                cur = cur.left;
+            }
+            cur = todoNodes.get(0);
+            todoNodes.remove(0);
+            result.add(cur.val);
+            cur = cur.right;
+        }
+        return result;
     }
 }
