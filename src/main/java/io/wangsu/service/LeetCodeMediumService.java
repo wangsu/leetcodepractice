@@ -1491,4 +1491,26 @@ public class LeetCodeMediumService {
         }
         return dummy.next;
     }
+
+    /**
+     * 93. Restore IP Addresses
+     * @param s
+     * @return
+     */
+    public List<String> restoreIpAddresses(String s) {
+        List<String> result = new ArrayList();
+        restoreIp(s,result,0,"",0);
+        return result;
+    }
+
+    private void restoreIp(String ipaddress, List<String> result, int index, String restored, int count){
+        if(count>4)return;
+        if(count ==4&&index==ipaddress.length())result.add(restored);
+        for(int i=1;i<4;i++){
+            if(index+i>ipaddress.length())break;
+            String s = ipaddress.substring(index,index+i);
+            if(((s.startsWith("0"))&&s.length()>1)||(i==3&&Integer.parseInt(s)>=256))continue;
+            restoreIp(ipaddress,result,index+i,restored+s+(count==3?"":"."),count+1);
+        }
+    }
 }
