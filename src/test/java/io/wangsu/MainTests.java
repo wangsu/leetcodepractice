@@ -156,4 +156,10 @@ public class MainTests {
         root.right.left = new TreeNode(3);
         log.info("result {}",leetCodeMediumService.inorderTraversal(root));
     }
+
+    @Test
+    public void test95(){
+        //log.info("result {}",leetCodeMediumService.generateTrees(3));
+        log.info("result {}",leetCodeMediumService.generateTrees(0));
+    }
 }
