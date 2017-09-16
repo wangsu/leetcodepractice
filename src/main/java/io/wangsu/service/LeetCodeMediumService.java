@@ -1605,4 +1605,25 @@ public class LeetCodeMediumService {
         if(root.val<=min||root.val>=max)return false;
         return isValidBST(root.left,min,root.val)&&isValidBST(root.right,root.val,max);
     }
+
+    /**
+     * 102. Binary Tree Level Order Traversal
+     * @param root
+     * @return
+     */
+    public List<List<Integer>> levelOrder(TreeNode root) {
+        List<List<Integer>> result = new ArrayList();
+        levelOrderHelper(result,root,0);
+        return result;
+    }
+
+    private void levelOrderHelper(List<List<Integer>> result, TreeNode root, int height){
+        if(root==null)return;
+        if(result.size()<=height){
+            result.add(new ArrayList<Integer>());
+        }
+        result.get(height).add(root.val);
+        levelOrderHelper(result,root.left,height+1);
+        levelOrderHelper(result,root.right,height+1);
+    }
 }
