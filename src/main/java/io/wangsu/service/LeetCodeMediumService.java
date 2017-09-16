@@ -1676,4 +1676,27 @@ public class LeetCodeMediumService {
         root.right=buildTreeHelper(preStart+1+inIndex-inStart,inIndex+1,inEnd,preorder,inorder);
         return root;
     }
+
+    /**
+     * 106. Construct Binary Tree from Inorder and Postorder Traversal
+     * @param inorder
+     * @param postorder
+     * @return
+     */
+    public TreeNode buildTreePostIn(int[] inorder, int[] postorder) {
+        Map<Integer, Integer> inOrderIndexMap = new HashMap();
+        for(int i=0;i<inorder.length;i++){
+            inOrderIndexMap.put(inorder[i],i);
+        }
+        return buildTreePostInHepler(inorder,postorder,0,inorder.length-1,0,postorder.length-1,inOrderIndexMap);
+    }
+
+    private TreeNode buildTreePostInHepler(int[] inorder, int[] postorder, int inStart, int inEnd, int postStart, int postEnd, Map<Integer, Integer> inOrderIndexMap){
+        if(inStart>inEnd||postStart>postEnd) return null;
+        TreeNode root = new TreeNode(postorder[postEnd]);
+        int inIndex = inOrderIndexMap.get(postorder[postEnd]);
+        root.left = buildTreePostInHepler(inorder, postorder, inStart, inIndex-1, postStart, postStart+inIndex-inStart-1, inOrderIndexMap);
+        root.right = buildTreePostInHepler(inorder, postorder, inIndex+1, inEnd, postStart+inIndex-inStart, postEnd-1, inOrderIndexMap);
+        return root;
+    }
 }
