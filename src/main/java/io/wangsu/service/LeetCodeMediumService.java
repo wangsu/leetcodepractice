@@ -1626,4 +1626,31 @@ public class LeetCodeMediumService {
         levelOrderHelper(result,root.left,height+1);
         levelOrderHelper(result,root.right,height+1);
     }
+
+    /**
+     * 103. Binary Tree Zigzag Level Order Traversal
+     * @param root
+     * @return
+     */
+    public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
+        List<List<Integer>> result = new ArrayList();
+        zigzagLevelOrderHelper(result,root,0);
+        return result;
+    }
+
+    private void zigzagLevelOrderHelper(List<List<Integer>> result, TreeNode root, int height){
+        if(root==null)return;
+        if(result.size()<=height){
+            result.add(new ArrayList<Integer>());
+        }
+
+        if(height%2==0){
+            result.get(height).add(root.val);
+        }else{
+            result.get(height).add(0,root.val);
+        }
+
+        zigzagLevelOrderHelper(result,root.left,height+1);
+        zigzagLevelOrderHelper(result,root.right,height+1);
+    }
 }
