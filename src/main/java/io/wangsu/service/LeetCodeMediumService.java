@@ -1723,4 +1723,32 @@ public class LeetCodeMediumService {
         root.right = toBST(slow.next,tail);
         return root;
     }
+
+    /**
+     * 113. Path Sum II
+     * @param root
+     * @param sum
+     * @return
+     */
+    public List<List<Integer>> pathSum(TreeNode root, int sum) {
+        List<List<Integer>> pathSumResult = new ArrayList();
+        if(root==null)return pathSumResult;
+        pathSumHelper(root,sum,new ArrayList(),pathSumResult);
+        return pathSumResult;
+    }
+
+    private void pathSumHelper(TreeNode root, int restSum, List<Integer> inter, List<List<Integer>> pathSumResult){
+        if(root==null)return;
+        inter.add(root.val);
+        if(root.left == null && root.right == null && restSum==root.val){
+            pathSumResult.add(new ArrayList(inter));
+            inter.remove(inter.size()-1);
+            return;
+        }else{
+            pathSumHelper(root.left,restSum-root.val,inter,pathSumResult);
+            pathSumHelper(root.right,restSum-root.val,inter,pathSumResult);
+        }
+        inter.remove(inter.size()-1);
+        return;
+    }
 }
