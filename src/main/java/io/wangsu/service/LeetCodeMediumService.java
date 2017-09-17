@@ -2,6 +2,7 @@ package io.wangsu.service;
 
 import io.wangsu.domain.Interval;
 import io.wangsu.domain.ListNode;
+import io.wangsu.domain.TreeLinkNode;
 import io.wangsu.domain.TreeNode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -1774,5 +1775,21 @@ public class LeetCodeMediumService {
             }
             cur.left=null;
         }
+    }
+
+    /**
+     * 116. Populating Next Right Pointers in Each Node
+     * @param root
+     */
+    public void connect(TreeLinkNode root) {
+        if(root==null)return;
+        if(root.left!=null){
+            root.left.next=root.right;
+            if(root.next!=null){
+                root.right.next=root.next.left;
+            }
+        }
+        connect(root.left);
+        connect(root.right);
     }
 }
