@@ -1751,4 +1751,28 @@ public class LeetCodeMediumService {
         inter.remove(inter.size()-1);
         return;
     }
+
+    /**
+     * 114. Flatten Binary Tree to Linked List
+     * @param root
+     */
+    public void flatten(TreeNode root) {
+        if(root==null)return;
+        List<TreeNode> list = new ArrayList();
+        list.add(root);
+        while(!list.isEmpty()){
+            TreeNode cur = list.get(0);
+            list.remove(0);
+            if(cur.right!=null){
+                list.add(0,cur.right);
+            }
+            if(cur.left!=null){
+                list.add(0,cur.left);
+            }
+            if(!list.isEmpty()){
+                cur.right=list.get(0);
+            }
+            cur.left=null;
+        }
+    }
 }
