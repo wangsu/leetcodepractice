@@ -1858,4 +1858,39 @@ public class LeetCodeMediumService {
         if(root.left==null&&root.right==null) return level*10+root.val;
         return sumNumbersHelper(root.left,level*10+root.val) + sumNumbersHelper(root.right,level*10+root.val);
     }
+
+    /**
+     * 131. Palindrome Partitioning
+     * @param s
+     * @return
+     */
+    public List<List<String>> partition(String s) {
+        List<List<String>> result = new ArrayList();
+        partitionHelper(s,0,new ArrayList(),result);
+        return result;
+    }
+
+    private void partitionHelper(String s, int index, List<String> inter, List<List<String>> result){
+        if(inter.size()>=0&&index>s.length()-1)
+            result.add(new ArrayList(inter));
+        for(int i=index;i<s.length();i++){
+            if(isPalindrome2(s,index,i)){
+                if(index==i)
+                    inter.add(Character.toString(s.charAt(i)));
+                else
+                    inter.add(s.substring(index,i+1));
+                partitionHelper(s,i+1,inter,result);
+                inter.remove(inter.size()-1);
+            }
+        }
+    }
+
+    private boolean isPalindrome2(String str,int left, int right){
+        if(left==right)return true;
+        while(left<right){
+            if(str.charAt(left)!=str.charAt(right))return false;
+            left++;right--;
+        }
+        return true;
+    }
 }
