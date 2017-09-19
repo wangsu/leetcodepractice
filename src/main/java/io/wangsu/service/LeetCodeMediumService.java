@@ -1938,4 +1938,25 @@ public class LeetCodeMediumService {
         }
         return result;
     }
+
+    /**
+     * 110. Balanced Binary Tree
+     * @param root
+     * @return
+     */
+    public boolean isBalanced(TreeNode root) {
+        return isBalancedDFSHeight(root)!=-1;
+    }
+
+    private int isBalancedDFSHeight(TreeNode root){
+        if(root==null)return 0;
+        int leftHeight = isBalancedDFSHeight(root.left);
+        if(leftHeight==-1)return -1;
+        int rightHeight = isBalancedDFSHeight(root.right);
+        if(rightHeight==-1)return -1;
+        if(Math.abs(leftHeight-rightHeight)>1){
+            return -1;
+        }
+        return Math.max(leftHeight,rightHeight)+1;
+    }
 }
