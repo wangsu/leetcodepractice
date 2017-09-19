@@ -1916,4 +1916,26 @@ public class LeetCodeMediumService {
         }
         return result;
     }
+
+    /**
+     * 144. Binary Tree Preorder Traversal
+     * @param root
+     * @return
+     */
+    public List<Integer> preorderTraversal(TreeNode root) {
+        List<Integer> result = new ArrayList();
+        List<TreeNode> todo = new ArrayList();
+        if(root==null)return result;
+        todo.add(root);
+        while(!todo.isEmpty()){
+            TreeNode cur = todo.get(0);
+            result.add(cur.val);
+            todo.remove(0);
+            if(cur.right!=null)
+                todo.add(0,cur.right);
+            if(cur.left!=null)
+                todo.add(0,cur.left);
+        }
+        return result;
+    }
 }
