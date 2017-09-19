@@ -1,9 +1,6 @@
 package io.wangsu.service;
 
-import io.wangsu.domain.Interval;
-import io.wangsu.domain.ListNode;
-import io.wangsu.domain.TreeLinkNode;
-import io.wangsu.domain.TreeNode;
+import io.wangsu.domain.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -1892,5 +1889,31 @@ public class LeetCodeMediumService {
             left++;right--;
         }
         return true;
+    }
+
+    /**
+     * 133. Clone Graph
+     * @param node
+     * @return
+     */
+    public UndirectedGraphNode cloneGraph(UndirectedGraphNode node) {
+        if(node==null)return null;
+        UndirectedGraphNode result = new UndirectedGraphNode(node.label);
+        Map<Integer,UndirectedGraphNode> map = new HashMap();
+        map.put(node.label,result);
+        List<UndirectedGraphNode> todo = new ArrayList();
+        todo.add(node);
+        while(!todo.isEmpty()){
+            UndirectedGraphNode cur = todo.get(0);
+            todo.remove(0);
+            for(UndirectedGraphNode neighbor:cur.neighbors){
+                if(!map.containsKey(neighbor.label)){
+                    map.put(neighbor.label,new UndirectedGraphNode(neighbor.label));
+                    todo.add(neighbor);
+                }
+                map.get(cur.label).neighbors.add(map.get(neighbor.label));
+            }
+        }
+        return result;
     }
 }
