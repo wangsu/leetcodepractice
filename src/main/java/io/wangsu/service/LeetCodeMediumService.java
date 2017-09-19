@@ -1843,4 +1843,19 @@ public class LeetCodeMediumService {
         }
         return result[0];
     }
+
+    /**
+     * 129. Sum Root to Leaf Numbers
+     * @param root
+     * @return
+     */
+    public int sumNumbers(TreeNode root) {
+        return sumNumbersHelper(root,0);
+    }
+
+    private int sumNumbersHelper(TreeNode root, int level){
+        if(root==null)return 0;
+        if(root.left==null&&root.right==null) return level*10+root.val;
+        return sumNumbersHelper(root.left,level*10+root.val) + sumNumbersHelper(root.right,level*10+root.val);
+    }
 }
