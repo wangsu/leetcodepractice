@@ -2017,4 +2017,28 @@ public class LeetCodeMediumService {
         }
         return slow;
     }
+
+    /**
+     * 139. Word Break
+     * @param s
+     * @param wordDict
+     * @return
+     */
+    public boolean wordBreak(String s, List<String> wordDict) {
+        boolean[] exists = new boolean[s.length()+1];
+        exists[0]=true;
+        Set<String> dict = new HashSet();
+        for(String str:wordDict){
+            dict.add(str);
+        }
+        for(int end=1;end<=s.length();end++){
+            for(int start=0;start<end;start++){
+                if(exists[start]&&dict.contains(s.substring(start,end))){
+                    exists[end]=true;
+                    break;
+                }
+            }
+        }
+        return exists[s.length()];
+    }
 }
