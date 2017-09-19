@@ -1959,4 +1959,29 @@ public class LeetCodeMediumService {
         }
         return Math.max(leftHeight,rightHeight)+1;
     }
+
+    /**
+     * 147. Insertion Sort List
+     * @param head
+     * @return
+     */
+    public ListNode insertionSortList(ListNode head) {
+        if(head==null)return head;
+        ListNode helper = new ListNode(Integer.MIN_VALUE);
+        //helper.next = head;
+        ListNode cur = head;
+        ListNode pre = helper;
+        ListNode next = null;
+        while(cur!=null){
+            next = cur.next;
+            while(pre.next!=null&&pre.next.val<cur.val){
+                pre = pre.next;
+            }
+            cur.next = pre.next;
+            pre.next = cur;
+            pre = helper;
+            cur = next;
+        }
+        return helper.next;
+    }
 }

@@ -162,4 +162,13 @@ public class MainTests {
         //log.info("result {}",leetCodeMediumService.generateTrees(3));
         log.info("result {}",leetCodeMediumService.generateTrees(0));
     }
+
+    @Test
+    public void test147(){
+        ListNode two = new ListNode(2);
+        ListNode one = new ListNode(1);
+        two.next = one;
+//        log.info("result {}",leetCodeMediumService.insertionSortList(two).val);
+        log.info("result {}",leetCodeMediumService.insertionSortList(one).val);
+    }
 }
