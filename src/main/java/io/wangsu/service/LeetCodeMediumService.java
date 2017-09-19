@@ -1984,4 +1984,37 @@ public class LeetCodeMediumService {
         }
         return helper.next;
     }
+
+    /**
+     * 142. Linked List Cycle II
+     * @param head
+     * @return
+     */
+    public ListNode detectCycle(ListNode head) {
+        if(head==null||head.next==null)return null;
+        ListNode slow = head.next;
+        ListNode fast = head.next.next;
+        boolean hasCycle = true;
+        while(slow!=fast){
+            if(slow.next==null){
+                hasCycle=false;
+                break;
+            }
+            slow = slow.next;
+            if(fast.next==null||fast.next.next==null){
+                hasCycle=false;
+                break;
+            }
+            fast=fast.next.next;
+        }
+        if(!hasCycle){
+            return null;
+        }
+        slow = head;
+        while(slow!=fast){
+            slow = slow.next;
+            fast = fast.next;
+        }
+        return slow;
+    }
 }
