@@ -2106,4 +2106,27 @@ public class LeetCodeMediumService {
         }
         return total>=0?start%gas.length:-1;
     }
+
+    /**
+     * 138. Copy List with Random Pointer
+     * @param head
+     * @return
+     */
+    public RandomListNode copyRandomList(RandomListNode head) {
+        Map<RandomListNode,RandomListNode> map = new HashMap();
+        RandomListNode cur = head;
+        while(cur!=null){
+            map.put(cur,new RandomListNode(cur.label));
+            cur = cur.next;
+        }
+        cur = head;
+        while(cur!=null){
+            RandomListNode newC = map.get(cur);
+            newC.next = map.get(cur.next);
+            newC.random = map.get(cur.random);
+            cur = cur.next;
+        }
+
+        return map.get(head);
+    }
 }
