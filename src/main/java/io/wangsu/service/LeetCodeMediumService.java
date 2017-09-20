@@ -2086,4 +2086,24 @@ public class LeetCodeMediumService {
         }
         return result;
     }
+
+    /**
+     * 134. Gas Station
+     * @param gas
+     * @param cost
+     * @return
+     */
+    public int canCompleteCircuit(int[] gas, int[] cost) {
+        int total = 0;
+        int start = 0;
+        int sum = Integer.MAX_VALUE;
+        for(int i=0;i<gas.length;i++){
+            total += gas[i]-cost[i];
+            if(total<sum){
+                sum = total;
+                start = i+1;
+            }
+        }
+        return total>=0?start%gas.length:-1;
+    }
 }
