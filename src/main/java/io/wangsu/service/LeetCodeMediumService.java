@@ -2061,4 +2061,29 @@ public class LeetCodeMediumService {
         }
         return result;
     }
+
+    /**
+     * 135. Candy
+     * @param ratings
+     * @return
+     */
+    public int candy(int[] ratings) {
+        if(ratings.length<=1)return ratings.length;
+        int[] candy = new int[ratings.length];
+        for(int i=1;i<ratings.length;i++){
+            if(ratings[i-1]<ratings[i]){
+                candy[i]=1+candy[i-1];
+            }
+        }
+        for(int i=ratings.length-1;i>0;i--){
+            if(ratings[i-1]>ratings[i]){
+                candy[i-1]=Math.max(candy[i-1],candy[i]+1);
+            }
+        }
+        int result = ratings.length;
+        for(int candyN:candy){
+            result += candyN;
+        }
+        return result;
+    }
 }
