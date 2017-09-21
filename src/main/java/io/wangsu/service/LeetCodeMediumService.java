@@ -2200,4 +2200,51 @@ public class LeetCodeMediumService {
             d2[id2]=false;
         }
     }
+
+    /**
+     * 51. N-Queens
+     * @param n
+     * @return
+     */
+    public List<List<String>> solveNQueens(int n) {
+        List<List<String>> result = new ArrayList();
+        List<String> board = new ArrayList<String>();
+        StringBuilder sb = new StringBuilder();
+        for(int i=0;i<n;i++){
+            sb.append(".");
+        }
+        String alldot = sb.toString();
+        for(int i=0;i<n;i++){
+            String s = "";
+            board.add(s);
+        }
+
+        solveNQueensHelper(alldot, 0,new boolean[n],new boolean[2*n],new boolean[2*n],board,result);
+        return result;
+    }
+
+    private void solveNQueensHelper(String alldot, int row, boolean[] cols, boolean[] d1, boolean[] d2, List<String> board, List<List<String>> result){
+        if(row==board.size()){
+            result.add(new ArrayList(board));
+        }
+        for(int col=0;col<board.size();col++){
+            int id1 = col - row + board.size();
+            int id2 = col + row;
+            if(cols[col]||d1[id1]||d2[id2])
+                continue;
+
+            StringBuilder rowSb = new StringBuilder(alldot);
+            rowSb.setCharAt(col, 'Q');
+            board.remove(row);
+            board.add(row,rowSb.toString());
+
+            cols[col]=true;
+            d1[id1]=true;
+            d2[id2]=true;
+            solveNQueensHelper(alldot,row+1,cols,d1,d2,board,result);
+            cols[col]=false;
+            d1[id1]=false;
+            d2[id2]=false;
+        }
+    }
 }
