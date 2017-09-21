@@ -2129,4 +2129,40 @@ public class LeetCodeMediumService {
 
         return map.get(head);
     }
+
+    /**
+     * 143. Reorder List
+     * @param head
+     */
+
+    public void reorderList(ListNode head) {
+        if(head==null||head.next==null)return;
+        ListNode mid = head;
+        ListNode fast = head;
+        while(fast.next!=null&&fast.next.next!=null){
+            mid = mid.next;
+            fast = fast.next.next;
+        }
+
+        ListNode preMiddle=mid;
+        ListNode preCurrent=mid.next;
+        while(preCurrent.next!=null){
+            ListNode current=preCurrent.next;
+            preCurrent.next=current.next;
+            current.next=preMiddle.next;
+            preMiddle.next=current;
+        }
+
+
+        ListNode l1 = head;
+        ListNode l2 = preMiddle.next;
+        while(l1!=preMiddle){
+            preMiddle.next=l2.next;
+            l2.next=l1.next;
+            l1.next=l2;
+            l1=l2.next;
+            l2=preMiddle.next;
+        }
+
+    }
 }
