@@ -2333,4 +2333,61 @@ public class LeetCodeMediumService {
         }
         return last;
     }
+
+    /**
+     * 441. Arranging Coins
+     * @param n
+     * @return
+     */
+    public int arrangeCoins(int n) {
+        if(n==0)return 0;
+        int left = n;
+        int result = 0;
+        int start = 0;
+        while(left>=0){
+            result++;
+            left-= ++start;
+        }
+        return result-1;
+    }
+
+    /**
+     * 518. Coin Change 2
+     * @param amount
+     * @param coins
+     * @return
+     */
+    public int change(int amount, int[] coins) {
+        int[][] dp = new int[coins.length+1][amount+1];
+        dp[0][0] = 1;
+        for(int i=1;i<=coins.length;i++){
+            dp[i][0]=1;
+            for(int j=1;j<=amount;j++){
+                dp[i][j]=dp[i-1][j]+(j>=coins[i-1]?dp[i][j-coins[i-1]]:0);
+            }
+        }
+        return dp[coins.length][amount];
+    }
+
+    /**
+     * 322. Coin Change
+     * @param coins
+     * @param amount
+     * @return
+     */
+    public int coinChange(int[] coins, int amount) {
+        int[] dp = new int[amount+1];
+        for(int i=0;i<dp.length;i++){
+            dp[i]=amount+1;
+        }
+        dp[0]=0;
+        for(int i=1;i<amount+1;i++){
+            for(int j=0;j<coins.length;j++){
+                if(coins[j]<=i){
+                    dp[i]=Math.min(dp[i],dp[i-coins[j]]+1);
+                }
+            }
+        }
+        return dp[amount]>amount?-1:dp[amount];
+    }
 }
