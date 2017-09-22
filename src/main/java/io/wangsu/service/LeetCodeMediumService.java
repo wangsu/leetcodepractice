@@ -2247,4 +2247,54 @@ public class LeetCodeMediumService {
             d2[id2]=false;
         }
     }
+
+    /**
+     * 41. First Missing Positive
+     * @param nums
+     * @return
+     */
+    public int firstMissingPositive(int[] nums) {
+        for(int i=0;i<nums.length;i++){
+            while(nums[i]>0&&nums[i]<=nums.length&&nums[nums[i]-1]!=nums[i]){
+                swap(nums,i,nums[i]-1);
+            }
+        }
+        for(int i=0;i<nums.length;i++){
+            if(nums[i]!=i+1){
+                return i+1;
+            }
+        }
+        return nums.length+1;
+    }
+
+    private void swap(int[] a, int left, int right){
+        int temp = a[left];
+        a[left] = a[right];
+        a[right] = temp;
+    }
+
+    /**
+     * 42. Trapping Rain Water
+     * @param height
+     * @return
+     */
+    public int trap(int[] height) {
+        int left=0;
+        int right = height.length-1;
+        int max = 0;
+        int leftmax = 0;
+        int rightmax = 0;
+        while(left<=right){
+            leftmax = Math.max(height[left],leftmax);
+            rightmax = Math.max(height[right],rightmax);
+            if(leftmax<rightmax){
+                max+=(leftmax-height[left]);
+                left++;
+            }else{
+                max+=(rightmax-height[right]);
+                right--;
+            }
+        }
+        return max;
+    }
 }
