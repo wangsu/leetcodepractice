@@ -2443,4 +2443,23 @@ public class LeetCodeMediumService {
         }
         return result;
     }
+
+    /**
+     * 123. Best Time to Buy and Sell Stock III
+     * @param prices
+     * @return
+     */
+    public int maxProfit(int[] prices) {
+        int hold1 = Integer.MIN_VALUE;
+        int hold2 = Integer.MIN_VALUE;
+        int release1 = 0;
+        int release2 = 0;
+        for(int price:prices){
+            release2 = Math.max(release2,hold2+price);
+            hold2 = Math.max(hold2,release1-price);
+            release1 = Math.max(release1,hold1+price);
+            hold1 = Math.max(hold1,0-price);
+        }
+        return release2;
+    }
 }
