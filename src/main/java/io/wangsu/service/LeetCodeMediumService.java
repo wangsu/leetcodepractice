@@ -2421,4 +2421,26 @@ public class LeetCodeMediumService {
         }
         return stack.pop();
     }
+
+    /**
+     * 145. Binary Tree Postorder Traversal
+     * @param root
+     * @return
+     */
+    public List<Integer> postorderTraversal(TreeNode root) {
+        List<Integer> result = new ArrayList();
+        if(root==null)return result;
+        List<TreeNode> todo = new ArrayList();
+        todo.add(root);
+        while(!todo.isEmpty()){
+            TreeNode cur = todo.get(0);
+            result.add(0,cur.val);
+            todo.remove(0);
+            if(cur.left!=null)
+                todo.add(0,cur.left);
+            if(cur.right!=null)
+                todo.add(0,cur.right);
+        }
+        return result;
+    }
 }
