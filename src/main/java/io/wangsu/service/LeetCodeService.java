@@ -1372,4 +1372,31 @@ public class LeetCodeService {
         }
         return result;
     }
+
+    /**
+     * 167. Two Sum II - Input array is sorted
+     * @param numbers
+     * @param target
+     * @return
+     */
+    public int[] twoSum(int[] numbers, int target) {
+        int[] result = new int[2];
+        if(numbers.length<2)
+            return result;
+        int left = 0;
+        int right = numbers.length-1;
+        while(left<right){
+            int total = numbers[left]+numbers[right];
+            if(total==target){
+                result[0] = left+1;
+                result[1] = right+1;
+                break;
+            }else if(total<target){
+                left++;
+            }else{
+                right--;
+            }
+        }
+        return result;
+    }
 }
